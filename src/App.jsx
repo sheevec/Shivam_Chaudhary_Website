@@ -296,21 +296,23 @@ function DataFlowCanvas() {
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
     let animId
-    const NODE_COUNT = window.innerWidth < 768 ? 16 : 30
-    const MAX_DIST = window.innerWidth < 768 ? 110 : 150
-    const nodes = []
+    let ro
+    const timer = setTimeout(() => {
+      const canvas = canvasRef.current
+      if (!canvas) return
+      const ctx = canvas.getContext('2d')
+      const NODE_COUNT = window.innerWidth < 768 ? 16 : 30
+      const MAX_DIST = window.innerWidth < 768 ? 110 : 150
+      const nodes = []
 
-    const resize = () => {
-      canvas.width = canvas.offsetWidth
-      canvas.height = canvas.offsetHeight
-    }
-    resize()
-    const ro = new ResizeObserver(resize)
-    ro.observe(canvas)
+      const resize = () => {
+        canvas.width = canvas.offsetWidth
+        canvas.height = canvas.offsetHeight
+      }
+      resize()
+      ro = new ResizeObserver(resize)
+      ro.observe(canvas)
 
     for (let i = 0; i < NODE_COUNT; i++) {
       nodes.push({
@@ -322,46 +324,50 @@ function DataFlowCanvas() {
       })
     }
 
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      for (const n of nodes) {
-        n.x += n.vx; n.y += n.vy
-        if (n.x < 0 || n.x > canvas.width)  n.vx *= -1
-        if (n.y < 0 || n.y > canvas.height) n.vy *= -1
-      }
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const dx = nodes[i].x - nodes[j].x
-          const dy = nodes[i].y - nodes[j].y
-          const d = Math.sqrt(dx * dx + dy * dy)
-          if (d < MAX_DIST) {
-            const a = (1 - d / MAX_DIST) * 0.13
-            ctx.beginPath()
-            ctx.strokeStyle = `rgba(34,211,238,${a})`
-            ctx.lineWidth = 0.7
-            ctx.moveTo(nodes[i].x, nodes[i].y)
-            ctx.lineTo(nodes[j].x, nodes[j].y)
-            ctx.stroke()
+      const draw = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        for (const n of nodes) {
+          n.x += n.vx; n.y += n.vy
+          if (n.x < 0 || n.x > canvas.width)  n.vx *= -1
+          if (n.y < 0 || n.y > canvas.height) n.vy *= -1
+        }
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const dx = nodes[i].x - nodes[j].x
+            const dy = nodes[i].y - nodes[j].y
+            const d = Math.sqrt(dx * dx + dy * dy)
+            if (d < MAX_DIST) {
+              const a = (1 - d / MAX_DIST) * 0.13
+              ctx.beginPath()
+              ctx.strokeStyle = `rgba(34,211,238,${a})`
+              ctx.lineWidth = 0.7
+              ctx.moveTo(nodes[i].x, nodes[i].y)
+              ctx.lineTo(nodes[j].x, nodes[j].y)
+              ctx.stroke()
+            }
           }
         }
+        for (const n of nodes) {
+          ctx.beginPath()
+          ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2)
+          ctx.fillStyle = 'rgba(34,211,238,0.35)'
+          ctx.fill()
+        }
+        animId = requestAnimationFrame(draw)
       }
-      for (const n of nodes) {
-        ctx.beginPath()
-        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2)
-        ctx.fillStyle = 'rgba(34,211,238,0.35)'
-        ctx.fill()
-      }
-      animId = requestAnimationFrame(draw)
-    }
-    draw()
-    return () => { cancelAnimationFrame(animId); ro.disconnect() }
+      draw()
+    }, 300)
+    return () => { clearTimeout(timer); cancelAnimationFrame(animId); ro?.disconnect() }
   }, [])
 
   return <canvas ref={canvasRef} className="data-canvas" aria-hidden="true" />
 }
 
 /* ─ Custom Cursor ───────────────────────────────────────────── */
+const isFinePointer = typeof window !== 'undefined' && window.matchMedia('(pointer: fine)').matches
+
 function CustomCursor() {
+  if (!isFinePointer) return null
   const dotRef  = useRef(null)
   const ringRef = useRef(null)
   const pos     = useRef({ x: -100, y: -100 })
