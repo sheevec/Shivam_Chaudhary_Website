@@ -44,6 +44,7 @@ const caseStudies = [
     metrics: [{ v: '50M+/day', l: 'records' }, { v: '45%', l: 'faster latency' }, { v: '~30%', l: 'better SLAs' }],
     stack: ['Python', 'SQL', 'GCP', 'BigQuery', 'PySpark', 'Airflow', 'dbt'],
     accent: 'cyan',
+    github: 'https://github.com/sheevec/credit-risk-pipeline',
   },
   {
     id: 'fraud',
@@ -54,6 +55,7 @@ const caseStudies = [
     metrics: [{ v: '20M+/day', l: 'transactions' }, { v: '35%', l: 'fewer false positives' }, { v: '$2.5M+', l: 'annual savings' }],
     stack: ['Python', 'ML', 'PySpark', 'GCP', 'BigQuery', 'SQL'],
     accent: 'violet',
+    github: 'https://github.com/sheevec/fraud-detection-ml',
   },
   {
     id: 'enterprise-data',
@@ -64,6 +66,7 @@ const caseStudies = [
     metrics: [{ v: '10+ TB/day', l: 'ingestion' }, { v: 'Hours → mins', l: 'latency' }, { v: '40%', l: 'less manual prep' }],
     stack: ['Python', 'PySpark', 'SQL', 'GCP', 'dbt', 'Airflow', 'Data Contracts'],
     accent: 'blue',
+    github: 'https://github.com/sheevec/enterprise-data-platform',
   },
   {
     id: 'plurit',
@@ -189,11 +192,62 @@ const capabilities = [
 ]
 
 const labs = [
-  { title: 'Optum Health Analytics Capstone', context: 'Northeastern · MS Analytics', desc: 'Analytics pipelines and ML classification models for healthcare data pattern detection.', tags: ['Python', 'ML', 'Healthcare'] },
-  { title: 'Fashion-MNIST Neural Network Benchmarking', context: 'Academic Research', desc: 'Benchmarked CNN architectures on Fashion-MNIST — accuracy, training dynamics, and generalization.', tags: ['PyTorch', 'CNN', 'Deep Learning'] },
-  { title: 'IMDb Text Analytics & Sentiment Classification', context: 'Applied NLP', desc: 'NLP pipeline for sentiment classification and topic modeling on a large-scale review corpus.', tags: ['NLP', 'Python', 'Scikit-learn'] },
-  { title: 'Black Friday Purchase Prediction', context: 'Applied ML', desc: 'Feature-engineered retail transaction data to predict purchase behavior and segment buyer intent.', tags: ['Python', 'XGBoost', 'Feature Engineering'] },
-  { title: 'CrowdDoing — Non-Profit Data Analytics', context: 'Volunteer · 2021 – Present', desc: 'Hypothesis-testing frameworks for sparse datasets; Tableau + R Shiny dashboards for impact measurement.', tags: ['R', 'Tableau', 'Statistics'] },
+  {
+    title: 'Optum Health Analytics Capstone',
+    context: 'Northeastern · MS Analytics',
+    desc: 'Analytics pipelines and ML classification models for healthcare data pattern detection. Built population segmentation using K-means clustering on 15M+ patient records with full HIPAA-compliant PHI handling.',
+    tags: ['Python', 'PySpark', 'ML', 'Healthcare', 'Azure'],
+    github: 'https://github.com/sheevec/optum-health-analytics',
+  },
+  {
+    title: 'COVID-19 Fake News Detector',
+    context: 'Northeastern · Applied AI · Team Project',
+    desc: 'NLP classifier detecting COVID-19 misinformation using 30+ linguistic features — readability scores, POS distributions, lexical richness, negation patterns — deployed as an AWS SageMaker inference pipeline. Achieved ~91% accuracy without transformer models.',
+    tags: ['Python', 'NLP', 'AWS SageMaker', 'scikit-learn', 'NLTK'],
+    github: 'https://github.com/sheevec/covid-fake-news-detector',
+  },
+  {
+    title: 'Macroeconomic Forecasting with VAR',
+    context: 'Northeastern · Capstone · Individual Project',
+    desc: 'Vector Autoregression model forecasting US inflation, unemployment, and Federal Funds Rate over 55 years of quarterly data (1960–2015). Full econometric workflow: lag selection, restricted VAR, impulse response analysis, and 25-quarter forecasting with 95% confidence intervals.',
+    tags: ['R', 'VAR', 'Time Series', 'Econometrics', 'FRED Data'],
+    github: 'https://github.com/sheevec/macroeconomic-forecasting',
+  },
+  {
+    title: 'Bank Marketing Campaign Prediction',
+    context: 'Northeastern · Predictive Analytics',
+    desc: 'Multi-model classification benchmark on 45k bank telemarketing records predicting term deposit subscriptions. Compared Logistic Regression, Naive Bayes, and Decision Trees using an expected value matrix to quantify real financial impact per model choice.',
+    tags: ['R', 'Classification', 'caret', 'Predictive Analytics'],
+    github: 'https://github.com/sheevec/banking-campaign-prediction',
+  },
+  {
+    title: 'Fashion-MNIST Neural Network Benchmarking',
+    context: 'Academic Research',
+    desc: 'Benchmarked 5 CNN architectures on Fashion-MNIST — LeNet-5, SimpleCNN, ResNet-18, VGG-like, EfficientNet-B0. Best accuracy: 94.2% (ResNet-18). Compared accuracy, parameters, and training time.',
+    tags: ['PyTorch', 'CNN', 'Deep Learning', 'ResNet'],
+    github: 'https://github.com/sheevec/fashion-mnist-benchmarking',
+  },
+  {
+    title: 'IMDb Sentiment Analysis: Classical ML vs Transformers',
+    context: 'Applied NLP',
+    desc: 'End-to-end NLP benchmark comparing TF-IDF + LogReg (89.3%), BiLSTM (91.7%), and fine-tuned BERT (94.8%) on 50k movie reviews. Includes error analysis and accuracy-by-review-length breakdown.',
+    tags: ['Python', 'BERT', 'Transformers', 'NLP', 'PyTorch'],
+    github: 'https://github.com/sheevec/imdb-sentiment-nlp',
+  },
+  {
+    title: 'Black Friday Purchase Prediction',
+    context: 'Applied ML',
+    desc: 'Feature-engineered 550k retail transactions to predict purchase amounts. User-level aggregations and product interaction features. Best RMSE: 2847 (LightGBM). Includes expected value and buyer intent segmentation.',
+    tags: ['Python', 'XGBoost', 'LightGBM', 'Feature Engineering'],
+    github: 'https://github.com/sheevec/black-friday-prediction',
+  },
+  {
+    title: 'CrowdDoing — Non-Profit Data Analytics',
+    context: 'Volunteer · 2021 – Present',
+    desc: 'Volunteer engagement analytics for crowddoing.world — cohort retention analysis, skill supply vs. demand matching, and impact scoring across 10k+ volunteers. Built dashboards and hypothesis-testing frameworks for sparse non-profit datasets.',
+    tags: ['Python', 'pandas', 'Plotly', 'Statistics', 'Non-profit'],
+    github: 'https://github.com/sheevec/crowddoing-analytics',
+  },
 ]
 
 const journey = [
@@ -552,6 +606,11 @@ function CaseCard({ study, index }) {
             <div className="stack-row">
               {study.stack.map((s) => <span key={s} className="stack-pill">{s}</span>)}
             </div>
+            {study.github && (
+              <a href={study.github} target="_blank" rel="noreferrer" className="case-github-link" onClick={e => e.stopPropagation()}>
+                View on GitHub →
+              </a>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
@@ -1118,6 +1177,11 @@ export default function App() {
                 <div className="stack-row">
                   {lab.tags.map((t) => <span key={t} className="stack-pill">{t}</span>)}
                 </div>
+                {lab.github && (
+                  <a href={lab.github} target="_blank" rel="noreferrer" className="lab-github-link" onClick={e => e.stopPropagation()}>
+                    View on GitHub →
+                  </a>
+                )}
               </motion.article>
             ))}
           </motion.div>
