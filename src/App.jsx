@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform, useSpring, AnimatePresence, useInView } from 'framer-motion'
-import heroImg from './assets/hero.png'
+import portraitImg from './assets/portrait.jpg'
+import dividerImg from './assets/divider.jpg'
 import './App.css'
 
 const RESUME_LINK = '/Shivam_Chaudhary_CV_DE.pdf'
@@ -196,12 +197,48 @@ const labs = [
 ]
 
 const journey = [
-  { period: '2011–2015', place: 'India', text: 'B.Tech Computer Engineering, RTU — foundations in systems, logic, and programming.' },
-  { period: '2015–2018', place: 'India + Argentina', text: 'Amdocs — telecom data systems, OSS/BSS, data warehouse foundations. $1.2M/month impact.' },
-  { period: '2019–2020', place: 'USA', text: 'MS Analytics (AI/ML), Northeastern — Optum capstone, ML research, applied experiments.' },
-  { period: '2021–2022', place: 'USA', text: 'PepsiCo + Rangam — BigQuery migration, feature pipelines, Azure analytics, ML validation.' },
-  { period: '2022–2024', place: 'USA', text: 'LTIMindtree — enterprise data fabric for Equifax + Citizens: credit risk, fraud, 10+ TB/day.' },
-  { period: '2024–Now', place: 'Bengaluru', text: 'Plurit — Director of Product and Platform. Founder-led execution: strategy, cloud infra, shipping.' },
+  {
+    period: '2011–2015',
+    place: 'India',
+    role: 'Student → Engineer',
+    text: 'Completed B.Tech in Computer Engineering at Rajasthan Technical University. Built foundations in algorithms, systems design, and software engineering that would underpin everything that followed.',
+    highlights: ['B.Tech Computer Engineering, RTU', 'Foundations in systems, algorithms, and programming', 'First exposure to data and software architecture'],
+  },
+  {
+    period: '2015–2018',
+    place: 'India + Argentina',
+    role: 'Data Engineer & QA — Amdocs',
+    text: 'Moved from Gurgaon to Buenos Aires working on telecom data systems for Telefónica Argentina. Built data warehouse, data lake, and ETL foundations for OSS/BSS platforms under real production pressure.',
+    highlights: ['Data warehouse, data lake, and ETL systems for major telecom operators', 'Deployed across Gurgaon and Buenos Aires — Telefónica Argentina client', 'Raised a CR that saved $1.2M/month in operational costs', 'UAT, system integration, and cross-functional delivery discipline'],
+  },
+  {
+    period: '2019–2020',
+    place: 'Boston, USA',
+    role: 'MS Analytics (AI/ML) — Northeastern',
+    text: 'Pursued a Master\'s in Analytics with AI/ML focus at Northeastern University in Boston. Completed the Optum health analytics capstone, conducted ML experiments, and built applied research projects.',
+    highlights: ['MS in Analytics (AI/ML), Northeastern University', 'Optum Health Analytics capstone project', 'Fashion-MNIST, IMDb NLP, and Black Friday ML experiments', 'CrowdDoing non-profit volunteer data work began'],
+  },
+  {
+    period: '2021–2022',
+    place: 'Texas, USA',
+    role: 'Data Engineer — PepsiCo + Rangam',
+    text: 'Joined PepsiCo in Texas, leading a BigQuery migration from legacy data systems and building feature pipelines across supply chain and commercial data. Also delivered AI/CV preprocessing work at Rangam.',
+    highlights: ['Led BigQuery SQL migration from legacy warehouse at PepsiCo', 'Built ETL automation reducing manual intervention by 50%', 'Integrated Azure Databricks, ADF, and Power BI workflows', 'Delivered NLP + CV preprocessing systems at Rangam'],
+  },
+  {
+    period: '2022–2024',
+    place: 'Georgia, USA',
+    role: 'Senior Data Engineer — LTIMindtree',
+    text: 'Senior Data Engineer at LTIMindtree, embedded with Equifax and Citizens Bank. Built credit risk seeding infrastructure, fraud detection pipelines, and enterprise data fabric at 10+ TB/day scale.',
+    highlights: ['Credit risk seeding + FICO integration for Equifax — 50M+ records/day', 'Fraud/anomaly ML decisioning for Citizens Bank — $2.5M+ annual savings', 'GCP metadata backup, load balancing, and CI/CD for keying/linking modules', '45% latency reduction in feature generation pipelines'],
+  },
+  {
+    period: '2024–Now',
+    place: 'Bengaluru, India',
+    role: 'Director, Product & Platform — Plurit',
+    text: 'Back in India as Director of Product and Platform at Plurit — a social events and community discovery app. Owning strategy, cloud infrastructure, and end-to-end product execution at founder speed.',
+    highlights: ['End-to-end product strategy for event discovery, matching, and community', 'AWS-native backend — Lambda, DynamoDB, API Gateway, CDK', '30% latency reduction, 40% increase in product usage', 'Leading cross-functional teams: product, design, and engineering'],
+  },
 ]
 
 const logos = ['Plurit', 'LTIMindtree', 'PepsiCo', 'Rangam', 'Amdocs', 'Northeastern', 'Equifax', 'Citizens Bank', 'Telefónica']
@@ -440,7 +477,7 @@ export default function App() {
                 }}
               >
                 <div className="portrait-wrap">
-                  <img src={heroImg} alt="Shivam Chaudhary — Senior Data Engineer" className="portrait-img" />
+                  <img src={portraitImg} alt="Shivam Chaudhary — Senior Data Engineer" className="portrait-img" />
                   <div className="portrait-overlay">
                     <span className="po-name">Shivam Chaudhary</span>
                     <span className="po-title">Senior Data Engineer</span>
@@ -510,6 +547,20 @@ export default function App() {
             </p>
           </div>
         </InViewSection>
+
+        {/* ── CHAPTER DIVIDER ─────────────────────────────────────── */}
+        <motion.div
+          className="chapter-divider"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 1 }}
+        >
+          <img src={dividerImg} alt="" aria-hidden="true" className="divider-img" />
+          <div className="divider-overlay">
+            <span>"I build systems that make complexity usable."</span>
+          </div>
+        </motion.div>
 
         {/* ── IMPACT METRICS ──────────────────────────────────────── */}
         <InViewSection className="section" id="impact">
@@ -601,7 +652,13 @@ export default function App() {
               >
                 <div className="jd-place">{journey[activeStage].place}</div>
                 <div className="jd-period">{journey[activeStage].period}</div>
+                <div className="jd-role">{journey[activeStage].role}</div>
                 <p>{journey[activeStage].text}</p>
+                <ul className="jd-highlights">
+                  {journey[activeStage].highlights.map((h) => (
+                    <li key={h}>{h}</li>
+                  ))}
+                </ul>
               </motion.div>
             </AnimatePresence>
           </div>
