@@ -877,7 +877,7 @@ export default function App() {
                 }}
               >
                 <div className="portrait-wrap">
-                  <img src={portraitImg} alt="Shivam Chaudhary — Senior Data Engineer" className="portrait-img" />
+                  <img src={portraitImg} alt="Shivam Chaudhary — Senior Data Engineer" className="portrait-img" fetchpriority="high" decoding="async" />
                   <div className="portrait-overlay">
                     <span className="po-name">Shivam Chaudhary</span>
                     <span className="po-title">Senior Data Engineer</span>
