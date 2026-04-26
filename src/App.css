@@ -258,12 +258,14 @@ textarea {
   justify-content: center;
   min-height: 44px;
   border-radius: 999px;
-  padding: 0 1rem;
+  padding: 0 1.25rem;
   border: 1px solid rgba(34, 211, 238, 0.5);
   background: rgba(8, 20, 34, 0.72);
   color: var(--t1);
   font-weight: 800;
   font-size: 0.82rem;
+  white-space: nowrap;
+  flex-shrink: 0;
   box-shadow:
     0 0 24px rgba(34, 211, 238, 0.18),
     inset 0 0 18px rgba(34, 211, 238, 0.09);

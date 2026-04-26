@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" fill="none">
+  <rect x="2" y="6" width="22" height="28" stroke="#ffffff" stroke-width="2.2"/>
+  <path d="M7 30 L7 12 L19 28 L19 10" stroke="#ffffff" stroke-width="2.2" fill="none"/>
+  <text x="32" y="27" font-family="Archivo, system-ui, sans-serif" font-size="17" font-weight="800" letter-spacing="-0.005em" fill="#ffffff">Northeastern</text>
+</svg>

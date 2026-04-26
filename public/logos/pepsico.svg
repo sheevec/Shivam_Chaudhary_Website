@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 40" fill="none">
+  <circle cx="14" cy="20" r="10" fill="#ffffff"/>
+  <path d="M5 18 Q14 12 23 18 Q14 24 5 18 Z" fill="#000" opacity="0.85"/>
+  <text x="32" y="27" font-family="Archivo, system-ui, sans-serif" font-size="18" font-weight="900" letter-spacing="0.02em" fill="#ffffff">PEPSICO</text>
+</svg>
