@@ -1,0 +1,704 @@
+/* Tier 2–3: Lenis + GSAP companions, R3F hero, shaders, DAG, heatmap, resume, cursor */
+
+/* ─ Nav resume link (React Router) ─ */
+.nav-links .nav-resume {
+  color: var(--t3);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.48rem 0.68rem;
+  border-radius: 999px;
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.nav-links .nav-resume:hover {
+  color: var(--t1);
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.nav-mobile-panel a.nav-mobile-resume {
+  display: block;
+}
+
+/* ─ Hero depth + R3D pipeline ─ */
+.hero-parallax-back,
+.hero-parallax-mid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  /* Promote parallax layers so GSAP y% updates don’t thrash layout with the rest of the page. */
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.hero-parallax-back {
+  background:
+    radial-gradient(ellipse 80% 55% at 18% 22%, rgba(34, 211, 238, 0.14), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 88% 70%, rgba(167, 139, 250, 0.1), transparent 50%);
+  opacity: 0.85;
+}
+
+.hero-parallax-mid {
+  z-index: 2;
+  background: radial-gradient(ellipse 90% 70% at 50% 100%, rgba(0, 0, 0, 0.55), transparent 62%);
+  mix-blend-mode: multiply;
+}
+
+.hero-pipeline-3d {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.72;
+}
+
+.data-canvas {
+  z-index: 1;
+}
+
+.hero-grid {
+  z-index: 3;
+}
+
+.portrait-clip {
+  overflow: hidden;
+  border-radius: inherit;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* ─ Case study WebGL backdrop ─ */
+.work-section-vfx {
+  position: relative;
+  overflow: hidden;
+}
+
+.case-shader-canvas,
+.case-shader-fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 0;
+}
+
+.case-shader-canvas canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.case-shader-fallback {
+  background: linear-gradient(125deg, rgba(8, 20, 34, 0.85), rgba(15, 30, 52, 0.55), rgba(8, 20, 34, 0.9));
+  opacity: 0.55;
+}
+
+.case-shader-gl {
+  position: absolute !important;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.work-section-fg {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─ DAG ─ */
+.dag-wrap {
+  margin: 1.5rem 0 2.25rem;
+  padding: 1.25rem 1rem 0.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(6, 10, 18, 0.45);
+}
+
+.dag-head {
+  margin-bottom: 0.75rem;
+}
+
+.dag-sub {
+  margin: 0.35rem 0 0;
+  color: var(--t3);
+  font-size: 0.88rem;
+}
+
+.dag-svg {
+  width: 100%;
+  height: auto;
+  max-height: 140px;
+}
+
+.dag-label {
+  fill: var(--t2);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.dag-sublabel {
+  fill: var(--t3);
+  font-size: 9px;
+}
+
+.dag-node {
+  fill: rgba(15, 30, 48, 0.95);
+  stroke: rgba(34, 211, 238, 0.35);
+  stroke-width: 1.5;
+}
+
+.dag-node-hit {
+  stroke: rgba(34, 211, 238, 0.85);
+  filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.35));
+}
+
+.dag-edge {
+  stroke-dasharray: 8 10;
+  animation: dag-flow 2.4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dag-edge {
+    animation: none;
+    stroke-dasharray: none;
+  }
+}
+
+@keyframes dag-flow {
+  to {
+    stroke-dashoffset: -36;
+  }
+}
+
+/* ─ Architecture explorer ─ */
+.arch-explorer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.arch-grid-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .arch-grid-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.arch-card-btn {
+  text-align: left;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(8, 14, 24, 0.55);
+  border-radius: 18px;
+  padding: 1.25rem 1.35rem;
+  color: inherit;
+  font: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.arch-card-btn:hover {
+  border-color: rgba(167, 139, 250, 0.35);
+  transform: translateY(-2px);
+}
+
+.arch-card-active {
+  border-color: rgba(34, 211, 238, 0.45);
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.12);
+}
+
+.arch-tap-hint {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--t3);
+  text-transform: uppercase;
+}
+
+.arch-stage {
+  padding: 1.5rem 1.35rem 1.35rem;
+}
+
+.arch-stage-head h3 {
+  margin: 0.35rem 0 0.5rem;
+}
+
+.arch-stage-desc {
+  color: var(--t2);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.arch-step-track {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.25rem 0 1rem;
+}
+
+.arch-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--t2);
+  font: inherit;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.arch-step-on {
+  border-color: rgba(34, 211, 238, 0.55);
+  background: rgba(34, 211, 238, 0.1);
+  color: var(--t1);
+}
+
+.arch-step-done {
+  opacity: 0.55;
+}
+
+.arch-step-idx {
+  font-size: 0.7rem;
+  font-weight: 900;
+  color: var(--cyan);
+}
+
+.arch-step-label {
+  font-weight: 700;
+  font-size: 0.82rem;
+}
+
+.arch-step-detail {
+  color: var(--t2);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.arch-nav {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.arch-arrow:disabled {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* ─ Metrics + charts ─ */
+.metrics-charts {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.metrics-chart-panel {
+  padding: 1.35rem 1.25rem;
+}
+
+.metrics-chart-note {
+  color: var(--t3);
+  font-size: 0.86rem;
+  margin: 0.35rem 0 0.75rem;
+  line-height: 1.55;
+}
+
+.metrics-pillar-legend {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+
+@media (min-width: 720px) {
+  .metrics-pillar-legend {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.metrics-pillar-legend li {
+  display: flex;
+  gap: 0.55rem;
+  align-items: flex-start;
+  font-size: 0.78rem;
+  color: var(--t2);
+  line-height: 1.35;
+}
+
+.metrics-pillar-legend strong {
+  display: block;
+  color: var(--t1);
+  font-size: 0.8rem;
+  margin-bottom: 0.12rem;
+}
+
+.metrics-pillar-legend-sub {
+  display: block;
+  color: var(--t3);
+  font-size: 0.72rem;
+  line-height: 1.4;
+}
+
+.metrics-pillar-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.12);
+}
+
+.metrics-chart-tooltip {
+  max-width: 280px;
+  padding: 0.75rem 0.85rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(6, 12, 22, 0.94);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--t2);
+}
+
+.metrics-chart-tooltip strong {
+  display: block;
+  color: var(--t1);
+  font-size: 0.85rem;
+  margin-bottom: 0.2rem;
+}
+
+.metrics-chart-tooltip-kicker {
+  display: block;
+  font-weight: 800;
+  color: var(--cyan);
+  margin-bottom: 0.35rem;
+  font-size: 0.82rem;
+}
+
+.metrics-chart-tooltip-unit {
+  margin: 0.35rem 0 0;
+  color: var(--t3);
+  font-size: 0.74rem;
+}
+
+.metrics-chart-tooltip-index {
+  margin: 0.4rem 0 0;
+  padding-top: 0.4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--t3);
+  font-size: 0.72rem;
+}
+
+.metric-card-pillar {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+
+.metrics-rechart {
+  width: 100%;
+  height: 320px;
+  contain: layout paint;
+}
+
+.metrics-grid-live {
+  margin-top: 0;
+}
+
+.metric-card-live strong {
+  font-size: 1.35rem;
+}
+
+/* ─ Showcase (heatmap + code) ─ */
+.showcase-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .showcase-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─ GitHub heatmap ─ */
+.gh-heatmap-wrap {
+  padding: 1.25rem 1.15rem;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(6, 12, 22, 0.55);
+}
+
+.gh-heatmap-head h3 {
+  margin: 0.35rem 0 0.25rem;
+}
+
+.gh-heatmap-sub {
+  color: var(--t3);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  margin: 0 0 1rem;
+}
+
+.gh-heatmap-sub a {
+  color: var(--cyan);
+}
+
+.gh-heatmap-loading,
+.gh-heatmap-err {
+  color: var(--t3);
+  font-size: 0.88rem;
+}
+
+.gh-heatmap {
+  display: flex;
+  gap: 3px;
+  overflow-x: auto;
+  padding-bottom: 0.35rem;
+}
+
+.gh-week {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.gh-cell {
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.gh-l0 {
+  background: rgba(255, 255, 255, 0.06);
+}
+.gh-l1 {
+  background: rgba(34, 211, 238, 0.22);
+}
+.gh-l2 {
+  background: rgba(34, 211, 238, 0.42);
+}
+.gh-l3 {
+  background: rgba(34, 211, 238, 0.62);
+}
+.gh-l4 {
+  background: rgba(34, 211, 238, 0.88);
+}
+
+.gh-profile-link {
+  display: inline-flex;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--cyan);
+  text-decoration: none;
+}
+
+.gh-profile-link:hover {
+  text-decoration: underline;
+}
+
+/* ─ Code carousel ─ */
+.code-carousel {
+  padding: 1.25rem 1.15rem 1.35rem;
+}
+
+.code-carousel-head h3 {
+  margin: 0.35rem 0 0.25rem;
+}
+
+.code-carousel-sub {
+  color: var(--t3);
+  font-size: 0.86rem;
+  margin: 0 0 1rem;
+}
+
+.code-carousel-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.code-carousel-title {
+  font-size: 0.82rem;
+  color: var(--t2);
+  font-weight: 600;
+  flex: 1;
+  text-align: center;
+}
+
+.code-carousel-body {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ─ Resume page ─ */
+.resume-page {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+.resume-hero {
+  margin-bottom: 1.5rem;
+  padding: 1.35rem 1.25rem;
+}
+
+.resume-back {
+  display: inline-flex;
+  margin-bottom: 0.75rem;
+  color: var(--cyan);
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.88rem;
+}
+
+.resume-back:hover {
+  text-decoration: underline;
+}
+
+.resume-lead {
+  color: var(--t2);
+  margin: 0.5rem 0 0;
+  max-width: 52rem;
+  line-height: 1.6;
+}
+
+.resume-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .resume-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.resume-pdf-wrap {
+  padding: 1rem;
+  overflow: auto;
+}
+
+.resume-loading,
+.resume-err {
+  color: var(--t3);
+  padding: 1rem;
+}
+
+.resume-callouts {
+  position: sticky;
+  top: 6rem;
+  padding: 1.25rem 1.15rem;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(6, 12, 22, 0.72);
+}
+
+.resume-callouts h2 {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+}
+
+.resume-callout {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.resume-callout:last-of-type {
+  border-bottom: none;
+}
+
+.resume-callout strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--t1);
+}
+
+.resume-callout p {
+  margin: 0;
+  color: var(--t2);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.resume-dl {
+  margin-top: 0.5rem;
+  width: 100%;
+  justify-content: center;
+}
+
+/* ─ Custom cursor ─ */
+.custom-cursor-on,
+.custom-cursor-on * {
+  cursor: none !important;
+}
+
+.custom-cursor-root {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99999;
+}
+
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  margin-left: -3px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.9);
+  z-index: 2;
+}
+
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  margin-top: -18px;
+  margin-left: -18px;
+  border-radius: 999px;
+  border: 1px solid rgba(34, 211, 238, 0.45);
+  z-index: 1;
+}
+
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .custom-cursor-on,
+  .custom-cursor-on * {
+    cursor: revert !important;
+  }
+
+  .custom-cursor-root {
+    display: none;
+  }
+}
