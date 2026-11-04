@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bank campaign targeting · Shivam Chaudhary</title>
+<meta name="description" content="Ranking customers before calling reaches 62.8% of subscribers from 20% of the call list. Conversion drivers and model comparison across 41,188 bank marketing calls." />
+<meta name="author" content="Shivam Chaudhary" />
+<link rel="canonical" href="https://shivamchaudhary.dev/dashboards/bank-campaign/" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://shivamchaudhary.dev/dashboards/bank-campaign/" />
+<meta property="og:title" content="Bank campaign targeting · Shivam Chaudhary" />
+<meta property="og:description" content="Ranking customers before calling reaches 62.8% of subscribers from 20% of the call list. Conversion drivers and model comparison across 41,188 bank marketing calls." />
+<meta property="og:image" content="https://shivamchaudhary.dev/dashboards/assets/og-bank-campaign.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:site_name" content="Shivam Chaudhary" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Bank campaign targeting · Shivam Chaudhary" />
+<meta name="twitter:description" content="Ranking customers before calling reaches 62.8% of subscribers from 20% of the call list. Conversion drivers and model comparison across 41,188 bank marketing calls." />
+<meta name="twitter:image" content="https://shivamchaudhary.dev/dashboards/assets/og-bank-campaign.jpg" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/dashboards/assets/charts.css" />
+<link rel="stylesheet" href="/dashboards/assets/theme.css" />
+</head>
+<body>
+<div class="pub-wrap">
+<nav class="pub-bar"><a class="pub-brand" href="/">Shivam Chaudhary</a><span class="pub-links"><a href="/dashboards/">All dashboards</a><a href="https://github.com/sheevec/banking-campaign-prediction">Analysis &amp; code on GitHub</a></span></nav>
+<div class="dv-page">
+  <header class="dv-head" id="top">
+    <p class="pub-kicker">Marketing analytics · Predictive modeling</p>
+    <h1>Bank campaign targeting</h1>
+    <p class="dv-take">Ranking customers with a model before calling reaches <b data-draw="v" class="dash-skeleton" data-source="gains" data-field="pct_subs_captured" data-where="pct_called=20" data-fmt="pct1">—</b> of all subscribers from the top <b data-draw="v" class="dash-skeleton" data-source="gains" data-field="pct_called" data-where="pct_called=20" data-fmt="pctint">—</b> of the call list, <b data-draw="v" class="dash-skeleton" data-source="gains" data-field="vs_random" data-where="pct_called=20" data-fmt="x1">—</b> what random calling achieves.</p>
+  </header>
+
+  <section class="dv-tiles" aria-label="Headline figures">
+    <div class="dv-tile">
+      <p class="dv-lbl">Calls made</p>
+      <span class="dv-num dash-skeleton" data-draw="v" data-source="totals" data-field="calls" data-row="0" data-fmt="int">—</span>
+      <p class="dv-sub">Phone campaigns by a Portuguese bank</p>
+    </div>
+    <div class="dv-tile">
+      <p class="dv-lbl">Customers who subscribed</p>
+      <span class="dv-num dash-skeleton" data-draw="v" data-source="totals" data-field="subscribers" data-row="0" data-fmt="int">—</span>
+      <p class="dv-sub"><b data-draw="v" class="dash-skeleton" data-source="totals" data-field="conversion_rate" data-row="0" data-fmt="pct1">—</b> of calls converted</p>
+    </div>
+    <div class="dv-tile">
+      <p class="dv-lbl">Conversion in the model's top <span data-draw="v" class="dash-skeleton" data-source="gains" data-field="pct_called" data-where="pct_called=10" data-fmt="pctint">—</span></p>
+      <span class="dv-num dash-skeleton" data-draw="v" data-source="gains" data-field="decile_conversion" data-where="pct_called=10" data-fmt="pct1">—</span>
+      <p class="dv-sub"><b data-draw="v" class="dash-skeleton" data-source="gains" data-field="lift" data-where="pct_called=10" data-fmt="x1">—</b> the average rate</p>
+    </div>
+    <div class="dv-tile">
+      <p class="dv-lbl">Subscribers reached by calling the top <span data-draw="v" class="dash-skeleton" data-source="gains" data-field="pct_called" data-where="pct_called=20" data-fmt="pctint">—</span></p>
+      <span class="dv-num dash-skeleton" data-draw="v" data-source="gains" data-field="pct_subs_captured" data-where="pct_called=20" data-fmt="pct1">—</span>
+      <p class="dv-sub"><b data-draw="v" class="dash-skeleton" data-source="gains" data-field="vs_random" data-where="pct_called=20" data-fmt="x1">—</b> random calling</p>
+    </div>
+    <div class="dv-tile">
+      <p class="dv-lbl">Conversion when the last campaign succeeded</p>
+      <span class="dv-num dash-skeleton" data-draw="v" data-source="segments" data-field="conversion_rate" data-where="dimension=previous_outcome&amp;segment=Success last time" data-fmt="pct1">—</span>
+      <p class="dv-sub">vs <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="conversion_rate" data-where="dimension=previous_outcome&amp;segment=Never contacted before" data-fmt="pct1">—</b> for customers never contacted before</p>
+    </div>
+  </section>
+
+  <section class="dv-sec" id="when-how">
+    <h2>When and how to call</h2>
+    <div class="dv-grid">
+      <div class="dv-card" id="month">
+        <h3>The busiest month converted worst</h3>
+        <p class="dv-note">May carried <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="call_share" data-where="dimension=month&amp;segment=May" data-fmt="pct1">—</b> of all calls but converted only <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="conversion_rate" data-where="dimension=month&amp;segment=May" data-fmt="pct1">—</b>, while the quiet months of March, September, October and December converted best.</p>
+        <div class="dv-ch dash-skeleton" style="min-height:304px" data-draw="pair" data-source="segments" data-dim="month"
+          data-a-field="call_share" data-a-title="Share of calls" data-a-fmt="pct1"
+          data-b-field="conversion_rate" data-b-title="Conversion rate" data-b-fmt="pct1"
+          data-aria="Share of calls and conversion rate by month"></div>
+      </div>
+      <div class="dv-card" id="fatigue">
+        <h3>More calls, fewer yeses</h3>
+        <p class="dv-note">Conversion falls from <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="conversion_rate" data-where="dimension=calls_to_customer&amp;segment=1 call" data-fmt="pct1">—</b> for customers called once to <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="conversion_rate" data-where="dimension=calls_to_customer&amp;segment=11+ calls" data-fmt="pct1">—</b> for those called most often in the same campaign.</p>
+        <div class="dv-ch dash-skeleton" style="min-height:184px" data-draw="bars" data-source="segments" data-dim="calls_to_customer"
+          data-measure="conversion_rate" data-fmt="pct1" data-measure-label="Conversion rate" data-accent="top1"
+          data-extra="calls" data-extra-label="Customers" data-extra-fmt="int"
+          data-aria="Conversion rate by number of calls to the customer"></div>
+      </div>
+      <div class="dv-card" id="channel">
+        <h3>Mobile beats landline</h3>
+        <p class="dv-note">Mobile calls converted at <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="conversion_rate" data-where="dimension=contact&amp;segment=Mobile" data-fmt="pct1">—</b>, against <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="conversion_rate" data-where="dimension=contact&amp;segment=Landline" data-fmt="pct1">—</b> on landlines.</p>
+        <div class="dv-ch dash-skeleton" style="min-height:64px" data-draw="bars" data-source="segments" data-dim="contact"
+          data-measure="conversion_rate" data-fmt="pct1" data-measure-label="Conversion rate" data-accent="top1"
+          data-extra="calls" data-extra-label="Calls" data-extra-fmt="int"
+          data-aria="Conversion rate by contact channel"></div>
+      </div>
+      <div class="dv-card" id="rates">
+        <h3>Low interest rates, more deposits</h3>
+        <p class="dv-note">When the three-month Euribor rate was low, <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="conversion_rate" data-where="dimension=euribor_3m&amp;segment=Below 1%25" data-fmt="pct1">—</b> of calls converted, against <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="conversion_rate" data-where="dimension=euribor_3m&amp;segment=Above 4.5%25" data-fmt="pct1">—</b> when rates were high.</p>
+        <div class="dv-ch dash-skeleton" style="min-height:124px" data-draw="bars" data-source="segments" data-dim="euribor_3m"
+          data-measure="conversion_rate" data-fmt="pct1" data-measure-label="Conversion rate" data-accent="top1"
+          data-extra="calls" data-extra-label="Calls" data-extra-fmt="int"
+          data-aria="Conversion rate by three-month Euribor rate"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dv-sec" id="who">
+    <h2>Who says yes</h2>
+    <div class="dv-grid">
+      <div class="dv-card" id="history">
+        <h3>Past success predicts future success</h3>
+        <p class="dv-note">Customers who said yes last time converted at <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="conversion_rate" data-where="dimension=previous_outcome&amp;segment=Success last time" data-fmt="pct1">—</b>, yet they were only <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="call_share" data-where="dimension=previous_outcome&amp;segment=Success last time" data-fmt="pct1">—</b> of calls.</p>
+        <div class="dv-ch dash-skeleton" style="min-height:94px" data-draw="bars" data-source="segments" data-dim="previous_outcome"
+          data-measure="conversion_rate" data-fmt="pct1" data-measure-label="Conversion rate" data-accent="top1"
+          data-extra="call_share" data-extra-label="Share of calls" data-extra-fmt="pct1"
+          data-aria="Conversion rate by previous campaign outcome"></div>
+      </div>
+      <div class="dv-card" id="age">
+        <h3>The youngest and oldest convert most</h3>
+        <p class="dv-note">The youngest and oldest customers convert at <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="conversion_rate" data-where="dimension=age&amp;segment=17–24" data-fmt="pct1">—</b> and <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="conversion_rate" data-where="dimension=age&amp;segment=65+" data-fmt="pct1">—</b>; middle-aged customers at <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="conversion_rate" data-where="dimension=age&amp;segment=35–44" data-fmt="pct1">—</b>.</p>
+        <div class="dv-ch dash-skeleton" style="min-height:184px" data-draw="bars" data-source="segments" data-dim="age"
+          data-measure="conversion_rate" data-fmt="pct1" data-measure-label="Conversion rate" data-accent="top2"
+          data-extra="calls" data-extra-label="Calls" data-extra-fmt="int"
+          data-aria="Conversion rate by age band"></div>
+      </div>
+      <div class="dv-card dv-wide" id="job">
+        <h3>Students and retirees convert best</h3>
+        <p class="dv-note">Students convert at <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="conversion_rate" data-where="dimension=job&amp;segment=Student" data-fmt="pct1">—</b> and retirees at <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="conversion_rate" data-where="dimension=job&amp;segment=Retired" data-fmt="pct1">—</b>. Blue-collar workers, <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="call_share" data-where="dimension=job&amp;segment=Blue collar" data-fmt="pct1">—</b> of calls, convert at <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="conversion_rate" data-where="dimension=job&amp;segment=Blue collar" data-fmt="pct1">—</b>.</p>
+        <div class="dv-ch dash-skeleton" style="min-height:364px" data-draw="bars" data-source="segments" data-dim="job"
+          data-measure="conversion_rate" data-fmt="pct1" data-measure-label="Conversion rate" data-accent="top2"
+          data-extra="calls" data-extra-label="Calls" data-extra-fmt="int"
+          data-aria="Conversion rate by job"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dv-sec" id="model">
+    <h2>Prioritizing the call list</h2>
+    <div class="dv-grid">
+      <div class="dv-card" id="gains-card">
+        <h3>Rank customers before you call</h3>
+        <p class="dv-note">Held-out customers ranked by the stepwise-selected logistic regression's score. The dashed line is what random calling would reach.</p>
+        <div class="dv-ch dash-skeleton" style="min-height:240px" data-draw="gains" data-source="gains" data-hx="20"
+          data-x-title="Share of customers called, highest score first" data-y-title="Share of subscribers reached"
+          data-ref="Random calling" data-hl="Top {x} → {y} of subscribers" data-tip-title="Top {x} of the list"
+          data-tip-y="Subscribers reached" data-tip-c="Conversion in this tenth" data-tip-l="Lift"
+          data-aria="Cumulative share of subscribers reached by share of customers called"></div>
+      </div>
+      <div class="dv-card" id="cutoff-card">
+        <h3>The default cutoff leaves money on the table</h3>
+        <p class="dv-note">Expected value on the held-out customers using the project's value matrix: <b data-draw="evm" data-k="tp">—</b> per subscriber reached, minus <b data-draw="evm" data-k="fp">—</b> per wasted call and <b data-draw="evm" data-k="fn">—</b> per subscriber missed. Calling everyone scoring above <b data-draw="v" class="dash-skeleton" data-source="cutoffs" data-field="cutoff" data-where="cutoff=0.5" data-fmt="cutoff">—</b> comes out at <b data-draw="v" class="dash-skeleton" data-source="cutoffs" data-field="expected_value" data-where="cutoff=0.5" data-fmt="money">—</b>; above <b data-draw="v" class="dash-skeleton" data-source="cutoffs" data-field="cutoff" data-where="cutoff=0.1" data-fmt="cutoff">—</b> it earns <b data-draw="v" class="dash-skeleton" data-source="cutoffs" data-field="expected_value" data-where="cutoff=0.1" data-fmt="money">—</b>.</p>
+        <div class="dv-ch dash-skeleton" style="min-height:244px" data-draw="cutoffs" data-source="cutoffs" data-prefix="Score above"
+          data-t-ev="Expected value" data-t-calls="Calls made" data-t-reached="Subscribers reached" data-t-missed="Subscribers missed"
+          data-aria="Expected value by model score cutoff"></div>
+      </div>
+      <div class="dv-card dv-wide" id="models-card">
+        <h3>Model comparison</h3>
+        <p class="dv-note">Scored at the default cutoff on <b data-draw="v" class="dash-skeleton" data-source="totals" data-field="test_customers" data-row="0" data-fmt="int">—</b> held-out customers, <b data-draw="v" class="dash-skeleton" data-source="totals" data-field="test_subscribers" data-row="0" data-fmt="int">—</b> of whom subscribed. AUC measures how well a model ranks customers, whatever the cutoff; higher is better. Best value in each column is highlighted.</p>
+        <div class="dv-scroll">
+          <table class="dv-table" data-source="models" data-row-key="model">
+            <thead><tr>
+              <th data-field="model">Model</th>
+              <th data-field="accuracy">Accuracy</th>
+              <th data-field="precision">Precision</th>
+              <th data-field="recall">Recall</th>
+              <th data-field="auc">AUC</th>
+              <th data-field="expected_value">Expected value</th>
+            </tr></thead>
+            <tbody data-draw="models"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="dv-foot">Source: UCI Machine Learning Repository, Bank Marketing (bank-additional-full), from Moro, Cortez &amp; Rita, <i>Decision Support Systems</i>. Call duration is left out of every model because it is only known once a call ends. The models recreate the project's R analysis (logistic regression, stepwise-selected logistic regression, naive Bayes and a decision tree) in Python with scikit-learn on a random three-quarter / one-quarter split, so figures differ slightly from the original R run.</p>
+</div>
+<footer class="pub-foot"><span>Built by Shivam Chaudhary from public data · <a href="/">shivamchaudhary.dev</a></span><a href="https://github.com/sheevec/banking-campaign-prediction">View the analysis on GitHub →</a></footer>
+</div>
+<script src="/dashboards/assets/d3.min.js"></script>
+<script>window.DASH_DATA = {"totals": [{"calls": "41188", "subscribers": "4640", "conversion_rate": "0.1127", "test_customers": "10297", "test_subscribers": "1104", "test_conversion_rate": "0.1072"}], "segments": [{"dimension": "month", "segment": "Mar", "order": "0", "calls": "546", "subscribers": "276", "conversion_rate": "0.5055", "call_share": "0.0133"}, {"dimension": "month", "segment": "Apr", "order": "1", "calls": "2632", "subscribers": "539", "conversion_rate": "0.2048", "call_share": "0.0639"}, {"dimension": "month", "segment": "May", "order": "2", "calls": "13769", "subscribers": "886", "conversion_rate": "0.0643", "call_share": "0.3343"}, {"dimension": "month", "segment": "Jun", "order": "3", "calls": "5318", "subscribers": "559", "conversion_rate": "0.1051", "call_share": "0.1291"}, {"dimension": "month", "segment": "Jul", "order": "4", "calls": "7174", "subscribers": "649", "conversion_rate": "0.0905", "call_share": "0.1742"}, {"dimension": "month", "segment": "Aug", "order": "5", "calls": "6178", "subscribers": "655", "conversion_rate": "0.106", "call_share": "0.15"}, {"dimension": "month", "segment": "Sep", "order": "6", "calls": "570", "subscribers": "256", "conversion_rate": "0.4491", "call_share": "0.0138"}, {"dimension": "month", "segment": "Oct", "order": "7", "calls": "718", "subscribers": "315", "conversion_rate": "0.4387", "call_share": "0.0174"}, {"dimension": "month", "segment": "Nov", "order": "8", "calls": "4101", "subscribers": "416", "conversion_rate": "0.1014", "call_share": "0.0996"}, {"dimension": "month", "segment": "Dec", "order": "9", "calls": "182", "subscribers": "89", "conversion_rate": "0.489", "call_share": "0.0044"}, {"dimension": "contact", "segment": "Mobile", "order": "0", "calls": "26144", "subscribers": "3853", "conversion_rate": "0.1474", "call_share": "0.6347"}, {"dimension": "contact", "segment": "Landline", "order": "1", "calls": "15044", "subscribers": "787", "conversion_rate": "0.0523", "call_share": "0.3653"}, {"dimension": "previous_outcome", "segment": "Success last time", "order": "0", "calls": "1373", "subscribers": "894", "conversion_rate": "0.6511", "call_share": "0.0333"}, {"dimension": "previous_outcome", "segment": "Failed last time", "order": "1", "calls": "4252", "subscribers": "605", "conversion_rate": "0.1423", "call_share": "0.1032"}, {"dimension": "previous_outcome", "segment": "Never contacted before", "order": "2", "calls": "35563", "subscribers": "3141", "conversion_rate": "0.0883", "call_share": "0.8634"}, {"dimension": "job", "segment": "Student", "order": "0", "calls": "875", "subscribers": "275", "conversion_rate": "0.3143", "call_share": "0.0212"}, {"dimension": "job", "segment": "Retired", "order": "1", "calls": "1720", "subscribers": "434", "conversion_rate": "0.2523", "call_share": "0.0418"}, {"dimension": "job", "segment": "Unemployed", "order": "2", "calls": "1014", "subscribers": "144", "conversion_rate": "0.142", "call_share": "0.0246"}, {"dimension": "job", "segment": "Admin", "order": "3", "calls": "10422", "subscribers": "1352", "conversion_rate": "0.1297", "call_share": "0.253"}, {"dimension": "job", "segment": "Management", "order": "4", "calls": "2924", "subscribers": "328", "conversion_rate": "0.1122", "call_share": "0.071"}, {"dimension": "job", "segment": "Unknown", "order": "5", "calls": "330", "subscribers": "37", "conversion_rate": "0.1121", "call_share": "0.008"}, {"dimension": "job", "segment": "Technician", "order": "6", "calls": "6743", "subscribers": "730", "conversion_rate": "0.1083", "call_share": "0.1637"}, {"dimension": "job", "segment": "Self employed", "order": "7", "calls": "1421", "subscribers": "149", "conversion_rate": "0.1049", "call_share": "0.0345"}, {"dimension": "job", "segment": "Housemaid", "order": "8", "calls": "1060", "subscribers": "106", "conversion_rate": "0.1", "call_share": "0.0257"}, {"dimension": "job", "segment": "Entrepreneur", "order": "9", "calls": "1456", "subscribers": "124", "conversion_rate": "0.0852", "call_share": "0.0354"}, {"dimension": "job", "segment": "Services", "order": "10", "calls": "3969", "subscribers": "323", "conversion_rate": "0.0814", "call_share": "0.0964"}, {"dimension": "job", "segment": "Blue collar", "order": "11", "calls": "9254", "subscribers": "638", "conversion_rate": "0.0689", "call_share": "0.2247"}, {"dimension": "age", "segment": "17–24", "order": "0", "calls": "1068", "subscribers": "256", "conversion_rate": "0.2397", "call_share": "0.0259"}, {"dimension": "age", "segment": "25–34", "order": "1", "calls": "13686", "subscribers": "1666", "conversion_rate": "0.1217", "call_share": "0.3323"}, {"dimension": "age", "segment": "35–44", "order": "2", "calls": "13500", "subscribers": "1168", "conversion_rate": "0.0865", "call_share": "0.3278"}, {"dimension": "age", "segment": "45–54", "order": "3", "calls": "8704", "subscribers": "753", "conversion_rate": "0.0865", "call_share": "0.2113"}, {"dimension": "age", "segment": "55–64", "order": "4", "calls": "3567", "subscribers": "484", "conversion_rate": "0.1357", "call_share": "0.0866"}, {"dimension": "age", "segment": "65+", "order": "5", "calls": "663", "subscribers": "313", "conversion_rate": "0.4721", "call_share": "0.0161"}, {"dimension": "calls_to_customer", "segment": "1 call", "order": "0", "calls": "17642", "subscribers": "2300", "conversion_rate": "0.1304", "call_share": "0.4283"}, {"dimension": "calls_to_customer", "segment": "2 calls", "order": "1", "calls": "10570", "subscribers": "1211", "conversion_rate": "0.1146", "call_share": "0.2566"}, {"dimension": "calls_to_customer", "segment": "3 calls", "order": "2", "calls": "5341", "subscribers": "574", "conversion_rate": "0.1075", "call_share": "0.1297"}, {"dimension": "calls_to_customer", "segment": "4–5 calls", "order": "3", "calls": "4250", "subscribers": "369", "conversion_rate": "0.0868", "call_share": "0.1032"}, {"dimension": "calls_to_customer", "segment": "6–10 calls", "order": "4", "calls": "2516", "subscribers": "159", "conversion_rate": "0.0632", "call_share": "0.0611"}, {"dimension": "calls_to_customer", "segment": "11+ calls", "order": "5", "calls": "869", "subscribers": "27", "conversion_rate": "0.0311", "call_share": "0.0211"}, {"dimension": "euribor_3m", "segment": "Below 1%", "order": "0", "calls": "3908", "subscribers": "1786", "conversion_rate": "0.457", "call_share": "0.0949"}, {"dimension": "euribor_3m", "segment": "1–2%", "order": "1", "calls": "9590", "subscribers": "1515", "conversion_rate": "0.158", "call_share": "0.2328"}, {"dimension": "euribor_3m", "segment": "2–4.5%", "order": "2", "calls": "3603", "subscribers": "182", "conversion_rate": "0.0505", "call_share": "0.0875"}, {"dimension": "euribor_3m", "segment": "Above 4.5%", "order": "3", "calls": "24087", "subscribers": "1157", "conversion_rate": "0.048", "call_share": "0.5848"}], "models": [{"model": "Logistic Regression (all features)", "accuracy": "0.9008", "precision": "0.603", "recall": "0.2201", "auc": "0.7875", "true_pos": "243", "false_pos": "160", "false_neg": "861", "true_neg": "9033", "expected_value": "-615710"}, {"model": "Logistic Regression (13 selected)", "accuracy": "0.9004", "precision": "0.597", "recall": "0.2174", "auc": "0.7889", "true_pos": "240", "false_pos": "162", "false_neg": "864", "true_neg": "9031", "expected_value": "-621690"}, {"model": "Naive Bayes", "accuracy": "0.8432", "precision": "0.3485", "recall": "0.5326", "auc": "0.7701", "true_pos": "588", "false_pos": "1099", "false_neg": "516", "true_neg": "8094", "expected_value": "66145"}, {"model": "Decision Tree", "accuracy": "0.8997", "precision": "0.6", "recall": "0.1929", "auc": "0.7542", "true_pos": "213", "false_pos": "142", "false_neg": "891", "true_neg": "9051", "expected_value": "-675320"}], "gains": [{"pct_called": "10", "pct_subs_captured": "0.428", "decile_conversion": "0.459", "lift": "4.28", "vs_random": "4.28"}, {"pct_called": "20", "pct_subs_captured": "0.628", "decile_conversion": "0.214", "lift": "1.99", "vs_random": "3.14"}, {"pct_called": "30", "pct_subs_captured": "0.704", "decile_conversion": "0.082", "lift": "0.76", "vs_random": "2.35"}, {"pct_called": "40", "pct_subs_captured": "0.774", "decile_conversion": "0.075", "lift": "0.7", "vs_random": "1.94"}, {"pct_called": "50", "pct_subs_captured": "0.816", "decile_conversion": "0.046", "lift": "0.43", "vs_random": "1.63"}, {"pct_called": "60", "pct_subs_captured": "0.851", "decile_conversion": "0.038", "lift": "0.35", "vs_random": "1.42"}, {"pct_called": "70", "pct_subs_captured": "0.899", "decile_conversion": "0.05", "lift": "0.47", "vs_random": "1.28"}, {"pct_called": "80", "pct_subs_captured": "0.945", "decile_conversion": "0.05", "lift": "0.46", "vs_random": "1.18"}, {"pct_called": "90", "pct_subs_captured": "0.968", "decile_conversion": "0.025", "lift": "0.24", "vs_random": "1.08"}, {"pct_called": "100", "pct_subs_captured": "1.0", "decile_conversion": "0.034", "lift": "0.32", "vs_random": "1.0"}], "cutoffs": [{"cutoff": "0.02", "calls": "10120", "subscribers_reached": "1096", "wasted_calls": "9024", "subscribers_missed": "8", "expected_value": "1037440"}, {"cutoff": "0.05", "calls": "6310", "subscribers_reached": "947", "wasted_calls": "5363", "subscribers_missed": "157", "expected_value": "759235"}, {"cutoff": "0.1", "calls": "2516", "subscribers_reached": "736", "wasted_calls": "1780", "subscribers_missed": "368", "expected_value": "357260"}, {"cutoff": "0.15", "calls": "1760", "subscribers_reached": "661", "wasted_calls": "1099", "subscribers_missed": "443", "expected_value": "211415"}, {"cutoff": "0.2", "calls": "1516", "subscribers_reached": "622", "wasted_calls": "894", "subscribers_missed": "482", "expected_value": "134830"}, {"cutoff": "0.3", "calls": "1010", "subscribers_reached": "466", "wasted_calls": "544", "subscribers_missed": "638", "expected_value": "-173860"}, {"cutoff": "0.4", "calls": "616", "subscribers_reached": "330", "wasted_calls": "286", "subscribers_missed": "774", "expected_value": "-443210"}, {"cutoff": "0.5", "calls": "402", "subscribers_reached": "240", "wasted_calls": "162", "subscribers_missed": "864", "expected_value": "-621690"}]};</script>
+<script src="/dashboards/assets/dash-shim.js"></script>
+<script src="/dashboards/assets/charts.js"></script>
+<script>
+  // The project's value matrix: a fixed reference, not data.
+  const EVM = { tp: 995, fp: 5, fn: 995 };
+  dash.draw('evm', (el) => { el.textContent = '$' + d3.format(',')(EVM[el.getAttribute('data-k')]); });
+
+  const A = (el, k) => el.getAttribute('data-' + k);
+
+  dash.draw('gains', (el) => {
+    if (ch.pending(el, ['gains'], 'chart')) return;
+    const pts = dash.data('gains').data
+      .map((r) => ({ x: ch.num(r.pct_called) / 100, y: ch.num(r.pct_subs_captured), row: r }))
+      .sort((a, b) => a.x - b.x);
+    const tpl = (s, p) => s.replace('{x}', ch.F.pctint(p.x * 100)).replace('{y}', ch.F.pct1(p.y));
+    ch.curve(el, {
+      pts, hx: ch.num(A(el, 'hx')) / 100, xTitle: A(el, 'x-title'), yTitle: A(el, 'y-title'), refLabel: A(el, 'ref'),
+      hlText: (p) => tpl(A(el, 'hl'), p), tipTitle: (p) => tpl(A(el, 'tip-title'), p), aria: A(el, 'aria'),
+      tip: (p) => [
+        [A(el, 'tip-y'), ch.F.pct1(p.y)],
+        [A(el, 'tip-c'), ch.F.pct1(ch.num(p.row.decile_conversion))],
+        [A(el, 'tip-l'), ch.F.x1(ch.num(p.row.lift))],
+      ],
+    });
+  });
+
+  dash.draw('cutoffs', (el) => {
+    if (ch.pending(el, ['cutoffs'], 'chart')) return;
+    const rows = dash.data('cutoffs').data.slice().sort((a, b) => ch.num(a.cutoff) - ch.num(b.cutoff));
+    const v = (r) => ch.num(r.expected_value);
+    ch.hbar(el, rows, {
+      label: (r) => A(el, 'prefix') + ' ' + ch.F.cutoff(ch.num(r.cutoff)),
+      value: v, fmt: (x) => ch.F.moneyc(x), aria: A(el, 'aria'),
+      color: (r) => (v(r) < 0 ? ch.critical : ch.accent()),
+      tip: (r) => [
+        [A(el, 't-ev'), ch.F.money(v(r))],
+        [A(el, 't-calls'), ch.F.int(ch.num(r.calls))],
+        [A(el, 't-reached'), ch.F.int(ch.num(r.subscribers_reached))],
+        [A(el, 't-missed'), ch.F.int(ch.num(r.subscribers_missed))],
+      ],
+    });
+  });
+
+  dash.draw('models', (tb) => {
+    if (ch.pending(tb, ['models'], 'table')) return;
+    const rows = dash.data('models').data;
+    const cols = [['model', null], ['accuracy', 'pct1'], ['precision', 'pct1'], ['recall', 'pct1'], ['auc', 'num3'], ['expected_value', 'money']];
+    const best = {};
+    cols.slice(1).forEach(([c]) => { best[c] = d3.max(rows, (r) => ch.num(r[c])); });
+    tb.replaceChildren(...rows.map((r) => {
+      const tr = document.createElement('tr');
+      cols.forEach(([c, f]) => {
+        const td = document.createElement('td');
+        td.textContent = f ? ch.fmt(f, ch.num(r[c])) : r[c];
+        if (f && ch.num(r[c]) === best[c]) td.className = 'dv-best';
+        tr.append(td);
+      });
+      return tr;
+    }));
+  });
+</script>
+</body>
+</html>

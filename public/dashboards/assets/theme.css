@@ -1,0 +1,65 @@
+/* Tokens matching shivamchaudhary.dev (dark theme, Archivo + Space Grotesk, cyan accent). */
+:root {
+  color-scheme: dark;
+  --font-anthropic-sans: 'Space Grotesk', Inter, system-ui, sans-serif;
+  --font-anthropic-serif: 'Archivo', Inter, system-ui, sans-serif;
+  --color-bg: #050914;
+  --color-panel: #0a1322;
+  --color-border-line: rgba(255, 255, 255, 0.09);
+  --color-fg: #f8fafc;
+  --color-fg-muted: #94a3b8;
+  --color-ok: #34d399;
+  --color-warn: #fbbf24;
+  --color-bad: #f87171;
+  --accent: #22d3ee;
+  --cds-chart-muted: #3b4a61;
+  --cds-chart-grid: rgba(255, 255, 255, 0.06);
+  --cds-chart-axis: rgba(255, 255, 255, 0.28);
+  --cds-chart-reference: #64748b;
+  --cds-chart-status-critical: #f87171;
+  --cds-surface-popover: #0d1728;
+  --cds-border: rgba(255, 255, 255, 0.14);
+  --cds-shadow-popover: 0 10px 30px rgba(0, 0, 0, 0.55);
+  --cds-text-secondary: #94a3b8;
+  --cds-radius: 14px;
+  --cds-pad-xs: 4px; --cds-pad-sm: 8px; --cds-pad-md: 12px; --cds-pad-lg: 20px; --cds-pad-xl: 28px;
+  --cds-gap-xs: 4px; --cds-gap-sm: 8px; --cds-gap-md: 16px; --cds-gap-lg: 24px; --cds-gap-xl: 40px;
+  --cds-font-size-caption: 13px; --cds-font-size-body: 16px; --cds-font-size-heading: 17px; --cds-font-size-title: 32px;
+  --cds-font-weight-medium: 600;
+  --cds-dur-slow: 300ms;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--color-bg); color: var(--color-fg); }
+body {
+  font-family: var(--font-anthropic-sans);
+  background:
+    radial-gradient(ellipse 900px 520px at 12% -10%, rgba(34, 211, 238, 0.10), transparent 65%),
+    radial-gradient(ellipse 700px 420px at 95% 0%, rgba(167, 139, 250, 0.08), transparent 60%),
+    var(--color-bg);
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+.pub-wrap { padding: 20px 16px 56px; }
+@media (min-width: 720px) { .pub-wrap { padding: 28px 32px 72px; } }
+.pub-bar { max-width: 76rem; margin: 0 auto 28px; display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 14px; }
+.pub-bar a { color: var(--color-fg-muted); text-decoration: none; }
+.pub-bar a:hover { color: var(--accent); }
+.pub-brand { font-family: var(--font-anthropic-serif); font-weight: 800; color: var(--color-fg) !important; letter-spacing: -0.01em; }
+.pub-links { display: flex; gap: 16px; flex-wrap: wrap; }
+.pub-kicker { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin: 0 0 10px; font-weight: 500; }
+.dv-head h1 { font-family: var(--font-anthropic-serif); font-weight: 800; font-size: clamp(30px, 5vw, 48px); letter-spacing: -0.02em; }
+.dv-num { font-family: var(--font-anthropic-serif); font-weight: 700; letter-spacing: -0.01em; }
+.dv-tile, .dv-card { background: rgba(255, 255, 255, 0.035); border-color: var(--color-border-line); backdrop-filter: blur(12px); }
+.dv-take b, .dv-note b, .dv-sub b { color: var(--color-fg); font-weight: 600; }
+.dash-skeleton { }
+.pub-foot { max-width: 76rem; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid var(--color-border-line); font-size: 13px; color: var(--color-fg-muted); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.pub-foot a { color: var(--accent); text-decoration: none; }
+/* landing */
+.pub-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: 16px; }
+.pub-card { display: block; padding: 24px; border-radius: 18px; border: 1px solid var(--color-border-line); background: rgba(255,255,255,0.035); color: inherit; text-decoration: none; transition: border-color .2s, transform .2s; }
+.pub-card:hover { border-color: rgba(34, 211, 238, 0.5); transform: translateY(-2px); }
+.pub-card h2 { font-family: var(--font-anthropic-serif); font-weight: 800; font-size: 24px; margin: 0 0 8px; letter-spacing: -0.01em; }
+.pub-card p { color: var(--color-fg-muted); margin: 0 0 16px; line-height: 1.5; }
+.pub-card .big { font-family: var(--font-anthropic-serif); font-weight: 800; font-size: 40px; color: var(--accent); margin: 0; }
+.pub-card .cta { color: var(--accent); font-weight: 500; font-size: 14px; }
+.pub-card img { width: 100%; border-radius: 10px; border: 1px solid var(--color-border-line); margin-bottom: 16px; display: block; }

@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Black Friday sales · Shivam Chaudhary</title>
+<meta name="description" content="The top 10% of customers bring in 36.1% of purchase value and three categories make up 72.7%. Sales breakdown and verified models across 550,068 retail transactions." />
+<meta name="author" content="Shivam Chaudhary" />
+<link rel="canonical" href="https://shivamchaudhary.dev/dashboards/black-friday/" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://shivamchaudhary.dev/dashboards/black-friday/" />
+<meta property="og:title" content="Black Friday sales · Shivam Chaudhary" />
+<meta property="og:description" content="The top 10% of customers bring in 36.1% of purchase value and three categories make up 72.7%. Sales breakdown and verified models across 550,068 retail transactions." />
+<meta property="og:image" content="https://shivamchaudhary.dev/dashboards/assets/og-black-friday.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:site_name" content="Shivam Chaudhary" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Black Friday sales · Shivam Chaudhary" />
+<meta name="twitter:description" content="The top 10% of customers bring in 36.1% of purchase value and three categories make up 72.7%. Sales breakdown and verified models across 550,068 retail transactions." />
+<meta name="twitter:image" content="https://shivamchaudhary.dev/dashboards/assets/og-black-friday.jpg" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/dashboards/assets/charts.css" />
+<link rel="stylesheet" href="/dashboards/assets/theme.css" />
+</head>
+<body>
+<div class="pub-wrap">
+<nav class="pub-bar"><a class="pub-brand" href="/">Shivam Chaudhary</a><span class="pub-links"><a href="/dashboards/">All dashboards</a><a href="https://github.com/sheevec/black-friday-prediction">Analysis &amp; code on GitHub</a></span></nav>
+<div class="dv-page">
+  <header class="dv-head" id="top">
+    <p class="pub-kicker">Retail analytics · Regression modeling</p>
+    <h1>Black Friday sales</h1>
+    <p class="dv-take">The top <b data-draw="v" class="dash-skeleton" data-source="concentration" data-field="pct_customers" data-where="pct_customers=10" data-fmt="pctint">—</b> of customers bring in <b data-draw="v" class="dash-skeleton" data-source="concentration" data-field="pct_value" data-where="pct_customers=10" data-fmt="pct1">—</b> of all purchase value, and three product categories account for <b data-draw="v" class="dash-skeleton" data-source="top_categories" data-field="share" data-row="0" data-fmt="pct1">—</b> of it.</p>
+  </header>
+
+  <section class="dv-tiles" aria-label="Headline figures">
+    <div class="dv-tile">
+      <p class="dv-lbl">Total purchase value</p>
+      <span class="dv-num dash-skeleton" data-draw="v" data-source="totals" data-field="total_purchase_value" data-row="0" data-fmt="compact">—</span>
+      <p class="dv-sub">In the dataset's own units</p>
+    </div>
+    <div class="dv-tile">
+      <p class="dv-lbl">Transactions</p>
+      <span class="dv-num dash-skeleton" data-draw="v" data-source="totals" data-field="transactions" data-row="0" data-fmt="int">—</span>
+      <p class="dv-sub">Across <b data-draw="v" class="dash-skeleton" data-source="totals" data-field="products" data-row="0" data-fmt="int">—</b> products</p>
+    </div>
+    <div class="dv-tile">
+      <p class="dv-lbl">Customers</p>
+      <span class="dv-num dash-skeleton" data-draw="v" data-source="totals" data-field="customers" data-row="0" data-fmt="int">—</span>
+      <p class="dv-sub">In three city tiers</p>
+    </div>
+    <div class="dv-tile">
+      <p class="dv-lbl">Average purchase</p>
+      <span class="dv-num dash-skeleton" data-draw="v" data-source="totals" data-field="avg_purchase" data-row="0" data-fmt="num0">—</span>
+      <p class="dv-sub">Median <b data-draw="v" class="dash-skeleton" data-source="totals" data-field="median_purchase" data-row="0" data-fmt="num0">—</b></p>
+    </div>
+    <div class="dv-tile">
+      <p class="dv-lbl">Value from the top <span data-draw="v" class="dash-skeleton" data-source="concentration" data-field="pct_customers" data-where="pct_customers=20" data-fmt="pctint">—</span> of customers</p>
+      <span class="dv-num dash-skeleton" data-draw="v" data-source="concentration" data-field="pct_value" data-where="pct_customers=20" data-fmt="pct1">—</span>
+      <p class="dv-sub">Ranked by total spend</p>
+    </div>
+  </section>
+
+  <section class="dv-sec" id="where">
+    <h2>Where the value comes from</h2>
+    <div class="dv-grid">
+      <div class="dv-card" id="categories">
+        <h3>Three categories drive most of the value</h3>
+        <p class="dv-note">Category 1 brings in <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="revenue_share" data-where="dimension=product_category&amp;segment=Category 1" data-fmt="pct1">—</b> of value from <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="transaction_share" data-where="dimension=product_category&amp;segment=Category 1" data-fmt="pct1">—</b> of transactions. Category 5 has the most transactions (<b data-draw="v" class="dash-skeleton" data-source="segments" data-field="transaction_share" data-where="dimension=product_category&amp;segment=Category 5" data-fmt="pct1">—</b>) but a smaller average purchase of <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="avg_purchase" data-where="dimension=product_category&amp;segment=Category 5" data-fmt="num0">—</b>.</p>
+        <div class="dv-ch dash-skeleton" style="min-height:304px" data-draw="bars" data-source="segments" data-dim="product_category" data-limit="10"
+          data-measure="revenue_share" data-fmt="pct1" data-measure-label="Share of value" data-accent="top3"
+          data-extra="transaction_share" data-extra-label="Share of transactions" data-extra-fmt="pct1"
+          data-extra2="avg_purchase" data-extra2-label="Average purchase" data-extra2-fmt="num0"
+          data-aria="Share of purchase value by product category, top ten"></div>
+      </div>
+      <div class="dv-card" id="concentration-card">
+        <h3>A fifth of customers bring in over half the value</h3>
+        <p class="dv-note">Customers ranked by total spend. The top <b data-draw="v" class="dash-skeleton" data-source="concentration" data-field="pct_customers" data-where="pct_customers=1" data-fmt="pctint">—</b> alone bring in <b data-draw="v" class="dash-skeleton" data-source="concentration" data-field="pct_value" data-where="pct_customers=1" data-fmt="pct1">—</b>. The dashed line is what equal spending would look like.</p>
+        <div class="dv-ch dash-skeleton" style="min-height:240px" data-draw="concentration" data-source="concentration" data-hx="20"
+          data-x-title="Share of customers, biggest spenders first" data-y-title="Share of purchase value"
+          data-ref="Equal spend" data-hl="Top {x} → {y} of value" data-tip-title="Top {x} of customers" data-tip-y="Share of value"
+          data-aria="Cumulative share of purchase value by share of customers"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dv-sec" id="who">
+    <h2>Who the customers are</h2>
+    <div class="dv-grid">
+      <div class="dv-card dv-wide" id="city">
+        <h3>City C has the most customers but not the most value</h3>
+        <p class="dv-note">City C holds <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="customer_share" data-where="dimension=city&amp;segment=City C" data-fmt="pct1">—</b> of customers but <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="revenue_share" data-where="dimension=city&amp;segment=City C" data-fmt="pct1">—</b> of value. A City A customer spends <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="value_per_customer" data-where="dimension=city&amp;segment=City A" data-fmt="compact">—</b> on average, against <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="value_per_customer" data-where="dimension=city&amp;segment=City C" data-fmt="compact">—</b> in City C.</p>
+        <div class="dv-ch dash-skeleton" style="min-height:108px" data-draw="pair" data-source="segments" data-dim="city"
+          data-a-field="customer_share" data-a-title="Share of customers" data-a-fmt="pct1"
+          data-b-field="revenue_share" data-b-title="Share of value" data-b-fmt="pct1"
+          data-aria="Share of customers and share of value by city tier"></div>
+      </div>
+      <div class="dv-card" id="age">
+        <h3>Young adults lead spending</h3>
+        <p class="dv-note">Customers aged 26–35 bring in <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="revenue_share" data-where="dimension=age&amp;segment=26–35" data-fmt="pct1">—</b> of all value and spend the most per person, <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="value_per_customer" data-where="dimension=age&amp;segment=26–35" data-fmt="compact">—</b> each.</p>
+        <div class="dv-ch dash-skeleton" style="min-height:214px" data-draw="bars" data-source="segments" data-dim="age"
+          data-measure="revenue_share" data-fmt="pct1" data-measure-label="Share of value" data-accent="top1"
+          data-extra="value_per_customer" data-extra-label="Value per customer" data-extra-fmt="compact"
+          data-extra2="customers" data-extra2-label="Customers" data-extra2-fmt="int"
+          data-aria="Share of purchase value by age group"></div>
+      </div>
+      <div class="dv-card" id="gender">
+        <h3>Men spend more per customer</h3>
+        <p class="dv-note">Men are <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="customer_share" data-where="dimension=gender&amp;segment=Men" data-fmt="pct1">—</b> of customers and <b data-draw="v" class="dash-skeleton" data-source="segments" data-field="revenue_share" data-where="dimension=gender&amp;segment=Men" data-fmt="pct1">—</b> of value.</p>
+        <div class="dv-ch dash-skeleton" style="min-height:64px" data-draw="bars" data-source="segments" data-dim="gender"
+          data-measure="value_per_customer" data-fmt="compact" data-measure-label="Value per customer" data-accent="top1"
+          data-extra="revenue_share" data-extra-label="Share of value" data-extra-fmt="pct1"
+          data-aria="Purchase value per customer by gender"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dv-sec" id="model">
+    <h2>Predicting the purchase amount</h2>
+    <div class="dv-grid">
+      <div class="dv-card" id="models-card">
+        <h3>A simple model matches LightGBM</h3>
+        <p class="dv-note">Trained on <b data-draw="v" class="dash-skeleton" data-source="totals" data-field="train_transactions" data-row="0" data-fmt="int">—</b> transactions and tested on <b data-draw="v" class="dash-skeleton" data-source="totals" data-field="test_transactions" data-row="0" data-fmt="int">—</b> from customers the models never saw. RMSE and MAE are errors in purchase units (lower is better); R² is the share of variation explained. Best value in each column is highlighted.</p>
+        <div class="dv-scroll">
+          <table class="dv-table" data-source="models" data-row-key="model">
+            <thead><tr>
+              <th data-field="model">Model</th>
+              <th data-field="rmse">RMSE</th>
+              <th data-field="mae">MAE</th>
+              <th data-field="r2">R²</th>
+            </tr></thead>
+            <tbody data-draw="models"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="dv-card" id="drivers-card">
+        <h3>What drives the prediction</h3>
+        <p class="dv-note">Share of LightGBM's total split gain. A product's average purchase carries <b data-draw="v" class="dash-skeleton" data-source="drivers" data-field="importance_share" data-where="feature=Product's average purchase" data-fmt="pct1">—</b> of it, which is why a linear model on the same features keeps up.</p>
+        <div class="dv-ch dash-skeleton" style="min-height:244px" data-draw="drivers" data-source="drivers" data-t="Share of gain"
+          data-aria="Feature importance share in the LightGBM model"></div>
+      </div>
+    </div>
+  </section>
+
+  <p class="dv-foot">Source: Black Friday retail transactions (the Analytics Vidhya hackathon training set, also published on Kaggle). Amounts are in the dataset's own units; the source does not state a currency. Models were re-run with the project's own preprocessing code and notebook settings, splitting by customer so test customers are unseen.</p>
+</div>
+<footer class="pub-foot"><span>Built by Shivam Chaudhary from public data · <a href="/">shivamchaudhary.dev</a></span><a href="https://github.com/sheevec/black-friday-prediction">View the analysis on GitHub →</a></footer>
+</div>
+<script src="/dashboards/assets/d3.min.js"></script>
+<script>window.DASH_DATA = {"totals": [{"total_purchase_value": "5095812742", "transactions": "550068", "customers": "5891", "products": "3631", "avg_purchase": "9264.0", "median_purchase": "8047.0", "train_transactions": "443756", "test_transactions": "106312"}], "segments": [{"dimension": "age", "segment": "0–17", "order": "0", "revenue": "134913183", "transactions": "15102", "customers": "218", "avg_purchase": "8933.5", "revenue_share": "0.0265", "transaction_share": "0.0275", "customer_share": "0.037", "value_per_customer": "618868.0"}, {"dimension": "age", "segment": "18–25", "order": "1", "revenue": "913848675", "transactions": "99660", "customers": "1069", "avg_purchase": "9169.7", "revenue_share": "0.1793", "transaction_share": "0.1812", "customer_share": "0.1815", "value_per_customer": "854863.0"}, {"dimension": "age", "segment": "26–35", "order": "2", "revenue": "2031770578", "transactions": "219587", "customers": "2053", "avg_purchase": "9252.7", "revenue_share": "0.3987", "transaction_share": "0.3992", "customer_share": "0.3485", "value_per_customer": "989659.0"}, {"dimension": "age", "segment": "36–45", "order": "3", "revenue": "1026569884", "transactions": "110013", "customers": "1167", "avg_purchase": "9331.4", "revenue_share": "0.2015", "transaction_share": "0.2", "customer_share": "0.1981", "value_per_customer": "879666.0"}, {"dimension": "age", "segment": "46–50", "order": "4", "revenue": "420843403", "transactions": "45701", "customers": "531", "avg_purchase": "9208.6", "revenue_share": "0.0826", "transaction_share": "0.0831", "customer_share": "0.0901", "value_per_customer": "792549.0"}, {"dimension": "age", "segment": "51–55", "order": "5", "revenue": "367099644", "transactions": "38501", "customers": "481", "avg_purchase": "9534.8", "revenue_share": "0.072", "transaction_share": "0.07", "customer_share": "0.0816", "value_per_customer": "763201.0"}, {"dimension": "age", "segment": "55+", "order": "6", "revenue": "200767375", "transactions": "21504", "customers": "372", "avg_purchase": "9336.3", "revenue_share": "0.0394", "transaction_share": "0.0391", "customer_share": "0.0631", "value_per_customer": "539697.0"}, {"dimension": "gender", "segment": "Men", "order": "0", "revenue": "3909580100", "transactions": "414259", "customers": "4225", "avg_purchase": "9437.5", "revenue_share": "0.7672", "transaction_share": "0.7531", "customer_share": "0.7172", "value_per_customer": "925344.0"}, {"dimension": "gender", "segment": "Women", "order": "1", "revenue": "1186232642", "transactions": "135809", "customers": "1666", "avg_purchase": "8734.6", "revenue_share": "0.2328", "transaction_share": "0.2469", "customer_share": "0.2828", "value_per_customer": "712024.0"}, {"dimension": "city", "segment": "City A", "order": "0", "revenue": "1316471661", "transactions": "147720", "customers": "1045", "avg_purchase": "8911.9", "revenue_share": "0.2583", "transaction_share": "0.2685", "customer_share": "0.1774", "value_per_customer": "1259781.0"}, {"dimension": "city", "segment": "City B", "order": "1", "revenue": "2115533605", "transactions": "231173", "customers": "1707", "avg_purchase": "9151.3", "revenue_share": "0.4152", "transaction_share": "0.4203", "customer_share": "0.2898", "value_per_customer": "1239328.0"}, {"dimension": "city", "segment": "City C", "order": "2", "revenue": "1663807476", "transactions": "171175", "customers": "3139", "avg_purchase": "9719.9", "revenue_share": "0.3265", "transaction_share": "0.3112", "customer_share": "0.5328", "value_per_customer": "530044.0"}, {"dimension": "product_category", "segment": "Category 1", "order": "0", "revenue": "1910013754", "transactions": "140378", "customers": "5767", "avg_purchase": "13606.2", "revenue_share": "0.3748", "transaction_share": "0.2552", "customer_share": "0.1016", "value_per_customer": "331197.0"}, {"dimension": "product_category", "segment": "Category 5", "order": "1", "revenue": "941835229", "transactions": "150933", "customers": "5751", "avg_purchase": "6240.1", "revenue_share": "0.1848", "transaction_share": "0.2744", "customer_share": "0.1013", "value_per_customer": "163769.0"}, {"dimension": "product_category", "segment": "Category 8", "order": "2", "revenue": "854318799", "transactions": "113925", "customers": "5659", "avg_purchase": "7499.0", "revenue_share": "0.1677", "transaction_share": "0.2071", "customer_share": "0.0997", "value_per_customer": "150966.0"}, {"dimension": "product_category", "segment": "Category 6", "order": "3", "revenue": "324150302", "transactions": "20466", "customers": "4085", "avg_purchase": "15838.5", "revenue_share": "0.0636", "transaction_share": "0.0372", "customer_share": "0.0719", "value_per_customer": "79351.0"}, {"dimension": "product_category", "segment": "Category 2", "order": "4", "revenue": "268516186", "transactions": "23864", "customers": "4296", "avg_purchase": "11251.9", "revenue_share": "0.0527", "transaction_share": "0.0434", "customer_share": "0.0757", "value_per_customer": "62504.0"}, {"dimension": "product_category", "segment": "Category 3", "order": "5", "revenue": "204084713", "transactions": "20213", "customers": "3838", "avg_purchase": "10096.7", "revenue_share": "0.04", "transaction_share": "0.0367", "customer_share": "0.0676", "value_per_customer": "53175.0"}, {"dimension": "product_category", "segment": "Category 16", "order": "6", "revenue": "145120612", "transactions": "9828", "customers": "3130", "avg_purchase": "14766.0", "revenue_share": "0.0285", "transaction_share": "0.0179", "customer_share": "0.0551", "value_per_customer": "46364.0"}, {"dimension": "product_category", "segment": "Category 11", "order": "7", "revenue": "113791115", "transactions": "24287", "customers": "3583", "avg_purchase": "4685.3", "revenue_share": "0.0223", "transaction_share": "0.0442", "customer_share": "0.0631", "value_per_customer": "31759.0"}, {"dimension": "product_category", "segment": "Category 10", "order": "8", "revenue": "100837301", "transactions": "5125", "customers": "2328", "avg_purchase": "19675.6", "revenue_share": "0.0198", "transaction_share": "0.0093", "customer_share": "0.041", "value_per_customer": "43315.0"}, {"dimension": "product_category", "segment": "Category 15", "order": "9", "revenue": "92969042", "transactions": "6290", "customers": "2440", "avg_purchase": "14780.5", "revenue_share": "0.0182", "transaction_share": "0.0114", "customer_share": "0.043", "value_per_customer": "38102.0"}, {"dimension": "product_category", "segment": "Category 7", "order": "10", "revenue": "60896731", "transactions": "3721", "customers": "1461", "avg_purchase": "16365.7", "revenue_share": "0.012", "transaction_share": "0.0068", "customer_share": "0.0257", "value_per_customer": "41682.0"}, {"dimension": "product_category", "segment": "Category 4", "order": "11", "revenue": "27380488", "transactions": "11753", "customers": "3361", "avg_purchase": "2329.7", "revenue_share": "0.0054", "transaction_share": "0.0214", "customer_share": "0.0592", "value_per_customer": "8147.0"}, {"dimension": "product_category", "segment": "Category 14", "order": "12", "revenue": "20014696", "transactions": "1523", "customers": "971", "avg_purchase": "13141.6", "revenue_share": "0.0039", "transaction_share": "0.0028", "customer_share": "0.0171", "value_per_customer": "20612.0"}, {"dimension": "product_category", "segment": "Category 18", "order": "13", "revenue": "9290201", "transactions": "3125", "customers": "1284", "avg_purchase": "2972.9", "revenue_share": "0.0018", "transaction_share": "0.0057", "customer_share": "0.0226", "value_per_customer": "7235.0"}, {"dimension": "product_category", "segment": "Category 9", "order": "14", "revenue": "6370324", "transactions": "410", "customers": "410", "avg_purchase": "15537.4", "revenue_share": "0.0013", "transaction_share": "0.0007", "customer_share": "0.0072", "value_per_customer": "15537.0"}, {"dimension": "product_category", "segment": "Category 17", "order": "15", "revenue": "5878699", "transactions": "578", "customers": "426", "avg_purchase": "10170.8", "revenue_share": "0.0012", "transaction_share": "0.0011", "customer_share": "0.0075", "value_per_customer": "13800.0"}, {"dimension": "product_category", "segment": "Category 12", "order": "16", "revenue": "5331844", "transactions": "3947", "customers": "1567", "avg_purchase": "1350.9", "revenue_share": "0.001", "transaction_share": "0.0072", "customer_share": "0.0276", "value_per_customer": "3403.0"}, {"dimension": "product_category", "segment": "Category 13", "order": "17", "revenue": "4008601", "transactions": "5549", "customers": "2272", "avg_purchase": "722.4", "revenue_share": "0.0008", "transaction_share": "0.0101", "customer_share": "0.04", "value_per_customer": "1764.0"}, {"dimension": "product_category", "segment": "Category 20", "order": "18", "revenue": "944727", "transactions": "2550", "customers": "2550", "avg_purchase": "370.5", "revenue_share": "0.0002", "transaction_share": "0.0046", "customer_share": "0.0449", "value_per_customer": "370.0"}, {"dimension": "product_category", "segment": "Category 19", "order": "19", "revenue": "59378", "transactions": "1603", "customers": "1603", "avg_purchase": "37.0", "revenue_share": "0.0", "transaction_share": "0.0029", "customer_share": "0.0282", "value_per_customer": "37.0"}], "concentration": [{"pct_customers": "1", "pct_value": "0.0627"}, {"pct_customers": "2", "pct_value": "0.1103"}, {"pct_customers": "3", "pct_value": "0.1523"}, {"pct_customers": "4", "pct_value": "0.1896"}, {"pct_customers": "5", "pct_value": "0.2232"}, {"pct_customers": "6", "pct_value": "0.2539"}, {"pct_customers": "7", "pct_value": "0.283"}, {"pct_customers": "8", "pct_value": "0.3105"}, {"pct_customers": "9", "pct_value": "0.3363"}, {"pct_customers": "10", "pct_value": "0.3608"}, {"pct_customers": "11", "pct_value": "0.3841"}, {"pct_customers": "12", "pct_value": "0.4064"}, {"pct_customers": "13", "pct_value": "0.4278"}, {"pct_customers": "14", "pct_value": "0.4481"}, {"pct_customers": "15", "pct_value": "0.4675"}, {"pct_customers": "16", "pct_value": "0.4861"}, {"pct_customers": "17", "pct_value": "0.5037"}, {"pct_customers": "18", "pct_value": "0.5208"}, {"pct_customers": "19", "pct_value": "0.5374"}, {"pct_customers": "20", "pct_value": "0.5533"}, {"pct_customers": "21", "pct_value": "0.5687"}, {"pct_customers": "22", "pct_value": "0.5834"}, {"pct_customers": "23", "pct_value": "0.5976"}, {"pct_customers": "24", "pct_value": "0.6114"}, {"pct_customers": "25", "pct_value": "0.6246"}, {"pct_customers": "26", "pct_value": "0.6373"}, {"pct_customers": "27", "pct_value": "0.6497"}, {"pct_customers": "28", "pct_value": "0.6613"}, {"pct_customers": "29", "pct_value": "0.6727"}, {"pct_customers": "30", "pct_value": "0.6838"}, {"pct_customers": "31", "pct_value": "0.6946"}, {"pct_customers": "32", "pct_value": "0.705"}, {"pct_customers": "33", "pct_value": "0.7152"}, {"pct_customers": "34", "pct_value": "0.725"}, {"pct_customers": "35", "pct_value": "0.7346"}, {"pct_customers": "36", "pct_value": "0.744"}, {"pct_customers": "37", "pct_value": "0.753"}, {"pct_customers": "38", "pct_value": "0.7618"}, {"pct_customers": "39", "pct_value": "0.7701"}, {"pct_customers": "40", "pct_value": "0.7783"}, {"pct_customers": "41", "pct_value": "0.7863"}, {"pct_customers": "42", "pct_value": "0.7941"}, {"pct_customers": "43", "pct_value": "0.8016"}, {"pct_customers": "44", "pct_value": "0.8089"}, {"pct_customers": "45", "pct_value": "0.816"}, {"pct_customers": "46", "pct_value": "0.8229"}, {"pct_customers": "47", "pct_value": "0.8296"}, {"pct_customers": "48", "pct_value": "0.8362"}, {"pct_customers": "49", "pct_value": "0.8425"}, {"pct_customers": "50", "pct_value": "0.8486"}, {"pct_customers": "51", "pct_value": "0.8545"}, {"pct_customers": "52", "pct_value": "0.8603"}, {"pct_customers": "53", "pct_value": "0.8659"}, {"pct_customers": "54", "pct_value": "0.8714"}, {"pct_customers": "55", "pct_value": "0.8767"}, {"pct_customers": "56", "pct_value": "0.8818"}, {"pct_customers": "57", "pct_value": "0.8868"}, {"pct_customers": "58", "pct_value": "0.8916"}, {"pct_customers": "59", "pct_value": "0.8963"}, {"pct_customers": "60", "pct_value": "0.9008"}, {"pct_customers": "61", "pct_value": "0.9052"}, {"pct_customers": "62", "pct_value": "0.9094"}, {"pct_customers": "63", "pct_value": "0.9135"}, {"pct_customers": "64", "pct_value": "0.9175"}, {"pct_customers": "65", "pct_value": "0.9214"}, {"pct_customers": "66", "pct_value": "0.9251"}, {"pct_customers": "67", "pct_value": "0.9288"}, {"pct_customers": "68", "pct_value": "0.9323"}, {"pct_customers": "69", "pct_value": "0.9357"}, {"pct_customers": "70", "pct_value": "0.9389"}, {"pct_customers": "71", "pct_value": "0.9421"}, {"pct_customers": "72", "pct_value": "0.9452"}, {"pct_customers": "73", "pct_value": "0.9482"}, {"pct_customers": "74", "pct_value": "0.9511"}, {"pct_customers": "75", "pct_value": "0.9539"}, {"pct_customers": "76", "pct_value": "0.9566"}, {"pct_customers": "77", "pct_value": "0.9592"}, {"pct_customers": "78", "pct_value": "0.9618"}, {"pct_customers": "79", "pct_value": "0.9643"}, {"pct_customers": "80", "pct_value": "0.9667"}, {"pct_customers": "81", "pct_value": "0.969"}, {"pct_customers": "82", "pct_value": "0.9713"}, {"pct_customers": "83", "pct_value": "0.9735"}, {"pct_customers": "84", "pct_value": "0.9756"}, {"pct_customers": "85", "pct_value": "0.9776"}, {"pct_customers": "86", "pct_value": "0.9796"}, {"pct_customers": "87", "pct_value": "0.9815"}, {"pct_customers": "88", "pct_value": "0.9833"}, {"pct_customers": "89", "pct_value": "0.9851"}, {"pct_customers": "90", "pct_value": "0.9868"}, {"pct_customers": "91", "pct_value": "0.9885"}, {"pct_customers": "92", "pct_value": "0.9901"}, {"pct_customers": "93", "pct_value": "0.9916"}, {"pct_customers": "94", "pct_value": "0.9931"}, {"pct_customers": "95", "pct_value": "0.9945"}, {"pct_customers": "96", "pct_value": "0.9959"}, {"pct_customers": "97", "pct_value": "0.9971"}, {"pct_customers": "98", "pct_value": "0.9982"}, {"pct_customers": "99", "pct_value": "0.9992"}, {"pct_customers": "100", "pct_value": "1.0"}], "models": [{"model": "Baseline (predict average)", "rmse": "5046.2", "mae": "4091.0", "r2": "0.0"}, {"model": "Linear Regression", "rmse": "2713.0", "mae": "2007.5", "r2": "0.711"}, {"model": "LightGBM", "rmse": "2723.6", "mae": "2011.3", "r2": "0.709"}], "drivers": [{"feature": "Product's average purchase", "importance_share": "0.8107"}, {"feature": "Product category", "importance_share": "0.0724"}, {"feature": "Category combination", "importance_share": "0.0547"}, {"feature": "Customer's average purchase", "importance_share": "0.0349"}, {"feature": "Product popularity", "importance_share": "0.0072"}, {"feature": "Customer spend variability", "importance_share": "0.0067"}, {"feature": "Customer total spend", "importance_share": "0.0044"}, {"feature": "Customer purchase count", "importance_share": "0.0027"}]};</script>
+<script src="/dashboards/assets/dash-shim.js"></script>
+<script src="/dashboards/assets/charts.js"></script>
+<script>
+  dash.calc('top_categories', {
+    inputs: ['segments'],
+    title: 'Top three categories’ share',
+    description: 'Sum of the value shares of the three product categories with the most purchase value.',
+    fn: (segments) => [{
+      share: segments.filter((r) => r.dimension === 'product_category')
+        .map((r) => Number(r.revenue_share)).sort((a, b) => b - a).slice(0, 3).reduce((a, b) => a + b, 0),
+    }],
+  });
+
+  const A = (el, k) => el.getAttribute('data-' + k);
+
+  dash.draw('concentration', (el) => {
+    if (ch.pending(el, ['concentration'], 'chart')) return;
+    const pts = dash.data('concentration').data
+      .map((r) => ({ x: ch.num(r.pct_customers) / 100, y: ch.num(r.pct_value), row: r }))
+      .sort((a, b) => a.x - b.x);
+    const tpl = (s, p) => s.replace('{x}', ch.F.pctint(p.x * 100)).replace('{y}', ch.F.pct1(p.y));
+    ch.curve(el, {
+      pts, hx: ch.num(A(el, 'hx')) / 100, xTitle: A(el, 'x-title'), yTitle: A(el, 'y-title'), refLabel: A(el, 'ref'),
+      hlText: (p) => tpl(A(el, 'hl'), p), tipTitle: (p) => tpl(A(el, 'tip-title'), p), aria: A(el, 'aria'),
+      tip: (p) => [[A(el, 'tip-y'), ch.F.pct1(p.y)]],
+    });
+  });
+
+  dash.draw('drivers', (el) => {
+    if (ch.pending(el, ['drivers'], 'chart')) return;
+    const v = (r) => ch.num(r.importance_share);
+    const rows = dash.data('drivers').data.slice().sort((a, b) => v(b) - v(a));
+    ch.hbar(el, rows, {
+      label: (r) => r.feature, value: v, fmt: (x) => ch.F.pct1(x), aria: A(el, 'aria'),
+      color: (r, i) => (i === 0 ? ch.accent() : ch.muted),
+      tip: (r) => [[A(el, 't'), ch.F.pct1(v(r))]],
+    });
+  });
+
+  dash.draw('models', (tb) => {
+    if (ch.pending(tb, ['models'], 'table')) return;
+    const rows = dash.data('models').data;
+    const cols = [['model', null], ['rmse', 'num0', 'min'], ['mae', 'num0', 'min'], ['r2', 'num3', 'max']];
+    const best = {};
+    cols.slice(1).forEach(([c, , dir]) => { best[c] = (dir === 'min' ? d3.min : d3.max)(rows, (r) => ch.num(r[c])); });
+    tb.replaceChildren(...rows.map((r) => {
+      const tr = document.createElement('tr');
+      cols.forEach(([c, f]) => {
+        const td = document.createElement('td');
+        td.textContent = f ? ch.fmt(f, ch.num(r[c])) : r[c];
+        if (f && ch.num(r[c]) === best[c]) td.className = 'dv-best';
+        tr.append(td);
+      });
+      return tr;
+    }));
+  });
+</script>
+</body>
+</html>

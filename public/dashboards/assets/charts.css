@@ -1,0 +1,36 @@
+.dv-page { font-family: var(--font-anthropic-sans); color: var(--color-fg); display: flex; flex-direction: column; gap: var(--cds-gap-xl); max-width: 76rem; margin-inline: auto; }
+.dv-head h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); line-height: 1.2; margin: 0 0 var(--cds-gap-sm); }
+.dv-take { font-size: var(--cds-font-size-body); color: var(--color-fg-muted); margin: 0; max-width: 52rem; line-height: 1.5; }
+.dv-page b { font-variant-numeric: tabular-nums; color: var(--color-fg); }
+.dv-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); gap: var(--cds-gap-md); }
+.dv-tile, .dv-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); min-width: 0; }
+.dv-lbl { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0 0 var(--cds-gap-xs); line-height: 1.35; }
+.dv-num { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; margin: 0; line-height: 1.15; display: block; min-height: 1.15em; }
+.dv-sub { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: var(--cds-gap-xs) 0 0; line-height: 1.35; }
+.dv-sec { display: flex; flex-direction: column; gap: var(--cds-gap-md); }
+.dv-sec > h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.dv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--cds-gap-md); }
+.dv-card h3 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.dv-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: var(--cds-gap-xs) 0 var(--cds-gap-md); line-height: 1.45; }
+.dv-wide { grid-column: 1 / -1; }
+.dv-ch { position: relative; width: 100%; }
+.dv-ch svg { display: block; overflow: visible; }
+.dv-tick { font-family: var(--font-anthropic-sans); font-size: var(--cds-font-size-caption); fill: var(--color-fg-muted); }
+.dv-head-t, .dv-tick.dv-head { fill: var(--color-fg); font-weight: var(--cds-font-weight-medium); }
+.dv-lab { font-family: var(--font-anthropic-sans); font-size: var(--cds-font-size-caption); fill: var(--color-fg); font-variant-numeric: tabular-nums; }
+.dv-strong { font-weight: var(--cds-font-weight-medium); }
+.dv-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); white-space: nowrap; z-index: 3; }
+.dv-tip-t { color: var(--cds-text-secondary); margin-bottom: 2px; }
+.dv-tip-r { display: flex; align-items: center; gap: 6px; font-variant-numeric: tabular-nums; }
+.dv-sw { width: 8px; height: 8px; border-radius: 2px; display: inline-block; }
+.dv-fail { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: inherit; height: 100%; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.dv-dot { width: 0.375rem; height: 0.375rem; border-radius: 50%; background: var(--color-bad); display: inline-block; }
+.dv-scroll { overflow-x: auto; }
+.dv-table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.dv-table th, .dv-table td { text-align: right; padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+.dv-table th:first-child, .dv-table td:first-child { text-align: left; white-space: normal; }
+.dv-table th { color: var(--color-fg-muted); font-weight: var(--cds-font-weight-medium); }
+.dv-table td.dv-best { font-weight: var(--cds-font-weight-medium); color: var(--color-ok); }
+.dv-foot { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.5; margin: 0; max-width: 60rem; }
+[data-dash-source-state=empty] { color: transparent; }
+[data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
