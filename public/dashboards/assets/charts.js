@@ -5,6 +5,8 @@
   const F = {
     pct1: d3.format('.1%'),
     pct0: d3.format('.0%'),
+    spct: (v) => (v > 0 ? '+' : v < 0 ? '−' : '') + d3.format('.1%')(Math.abs(v)),
+    num2: d3.format(',.2f'),
     pctint: (v) => d3.format(',.0f')(v) + '%',
     int: d3.format(','),
     num0: d3.format(',.0f'),
@@ -60,7 +62,8 @@
     const id = el.getAttribute('data-source');
     if (ch.pending(el, [id], 'value')) return;
     const row = ch.findRow(dash.data(id).data, el);
-    el.textContent = row ? ch.fmt(el.getAttribute('data-fmt'), ch.num(row[el.getAttribute('data-field')])) : '—';
+    const f = el.getAttribute('data-fmt'), raw = row ? row[el.getAttribute('data-field')] : null;
+    el.textContent = row ? (f === 'text' ? String(raw) : ch.fmt(f, ch.num(raw))) : '—';
   };
   ch.dim = (rows, dim) => rows.filter((r) => r.dimension === dim).sort((a, b) => ch.num(a.order) - ch.num(b.order));
 
@@ -116,22 +119,27 @@
     const lw = ch.measure(svg, rows.map(o.label), 'dv-tick');
     const vw = ch.measure(svg, vals.map(o.fmt), 'dv-lab');
     const min = Math.min(0, d3.min(vals)), max = Math.max(0, d3.max(vals));
-    const x0 = lw + 12 + (min < 0 ? vw + 8 : 0);
+    // Narrow widths: put category labels above their bars so the bars keep room.
+    const side = (min < 0 ? vw + 8 : 0) + (max > 0 ? vw + 8 : 4);
+    const stacked = W - (lw + 12) - side < 90;
+    const lo = stacked ? 16 : 0, rH = rowH + lo, H2 = top + rows.length * rH + 2;
+    svg.attr('viewBox', `0 0 ${W} ${H2}`);
+    const x0 = (stacked ? 0 : lw + 12) + (min < 0 ? vw + 8 : 0);
     const x1 = Math.max(x0 + 24, W - (max > 0 ? vw + 8 : 4));
     const x = d3.scaleLinear([min, max], [x0, x1]);
     const g = svg.selectAll('g.dv-row').data(rows).join('g').attr('class', 'dv-row')
-      .attr('transform', (d, i) => `translate(0,${top + i * rowH})`);
-    g.append('text').attr('class', 'dv-tick').attr('x', lw).attr('y', rowH / 2).attr('dy', '0.35em')
-      .attr('text-anchor', 'end').text(o.label);
-    g.append('rect').attr('class', 'dv-bar').attr('x', (d) => x(Math.min(0, o.value(d)))).attr('y', (rowH - bh) / 2)
+      .attr('transform', (d, i) => `translate(0,${top + i * rH})`);
+    if (stacked) g.append('text').attr('class', 'dv-tick').attr('x', 0).attr('y', 12).text(o.label);
+    else g.append('text').attr('class', 'dv-tick').attr('x', lw).attr('y', rowH / 2).attr('dy', '0.35em').attr('text-anchor', 'end').text(o.label);
+    g.append('rect').attr('class', 'dv-bar').attr('x', (d) => x(Math.min(0, o.value(d)))).attr('y', lo + (rowH - bh) / 2)
       .attr('height', bh).attr('width', (d) => Math.max(1, Math.abs(x(o.value(d)) - x(0)))).attr('rx', 3)
       .style('fill', (d, i) => o.color(d, i));
-    g.append('text').attr('class', 'dv-lab').attr('y', rowH / 2).attr('dy', '0.35em')
+    g.append('text').attr('class', 'dv-lab').attr('y', lo + rowH / 2).attr('dy', '0.35em')
       .attr('x', (d) => (o.value(d) < 0 ? x(o.value(d)) - 6 : x(o.value(d)) + 6))
       .attr('text-anchor', (d) => (o.value(d) < 0 ? 'end' : 'start')).text((d) => o.fmt(o.value(d)));
-    if (min < 0) svg.append('line').attr('x1', x(0)).attr('x2', x(0)).attr('y1', top).attr('y2', H - 2).style('stroke', 'var(--cds-chart-axis)');
+    if (min < 0) svg.append('line').attr('x1', x(0)).attr('x2', x(0)).attr('y1', top).attr('y2', H2 - 2).style('stroke', 'var(--cds-chart-axis)');
     const t = ch.tip(el);
-    g.append('rect').attr('width', W).attr('height', rowH).style('fill', 'transparent')
+    g.append('rect').attr('width', W).attr('height', rH).style('fill', 'transparent')
       .on('pointermove', (ev, d) => {
         const [px, py] = d3.pointer(ev, el);
         g.select('.dv-bar').style('opacity', (r) => (r === d ? 1 : 0.5));

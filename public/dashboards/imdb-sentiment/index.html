@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>What makes a movie review positive · Shivam Chaudhary</title>
+<meta name="description" content="A TF-IDF model labels 89.4% of 25,000 unseen IMDB reviews correctly. The words that push a review positive or negative, and how a simple baseline compares with deep learning." />
+<meta name="author" content="Shivam Chaudhary" />
+<link rel="canonical" href="https://shivamchaudhary.dev/dashboards/imdb-sentiment/" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://shivamchaudhary.dev/dashboards/imdb-sentiment/" />
+<meta property="og:title" content="What makes a movie review positive · Shivam Chaudhary" />
+<meta property="og:description" content="A TF-IDF model labels 89.4% of 25,000 unseen IMDB reviews correctly. The words that push a review positive or negative, and how a simple baseline compares with deep learning." />
+<meta property="og:image" content="https://shivamchaudhary.dev/dashboards/assets/og-imdb-sentiment.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:site_name" content="Shivam Chaudhary" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="What makes a movie review positive · Shivam Chaudhary" />
+<meta name="twitter:description" content="A TF-IDF model labels 89.4% of 25,000 unseen IMDB reviews correctly. The words that push a review positive or negative, and how a simple baseline compares with deep learning." />
+<meta name="twitter:image" content="https://shivamchaudhary.dev/dashboards/assets/og-imdb-sentiment.jpg" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/dashboards/assets/charts.css" />
+<link rel="stylesheet" href="/dashboards/assets/theme.css" />
+</head>
+<body>
+<div class="pub-wrap">
+<nav class="pub-bar"><a class="pub-brand" href="/">Shivam Chaudhary</a><span class="pub-links"><a href="/dashboards/">All dashboards</a><a href="https://github.com/sheevec/imdb-sentiment-nlp">Analysis &amp; code on GitHub</a></span></nav>
+<div class="dv-page">
+  <header class="dv-head" id="top">
+    <p class="pub-kicker">NLP · Sentiment analysis</p>
+    <h1>What makes a movie review positive</h1>
+    <p class="dv-take">A TF-IDF model trained on <b data-draw="v" data-source="totals" data-field="train_reviews" data-row="0" data-fmt="int">—</b> IMDB reviews labels <b data-draw="v" data-source="totals" data-field="accuracy" data-row="0" data-fmt="pct1">—</b> of <b data-draw="v" data-source="totals" data-field="test_reviews" data-row="0" data-fmt="int">—</b> unseen reviews correctly. "<b data-draw="v" data-source="words" data-field="word" data-where="direction=Positive&amp;order=0" data-fmt="text">—</b>" is the strongest sign of a positive review and "<b data-draw="v" data-source="words" data-field="word" data-where="direction=Negative&amp;order=0" data-fmt="text">—</b>" of a negative one.</p>
+  </header>
+
+  <section class="dv-tiles" aria-label="Headline figures">
+    <div class="dv-tile">
+      <p class="dv-lbl">Movie reviews</p>
+      <span class="dv-num" data-draw="v" data-source="totals" data-field="reviews" data-row="0" data-fmt="int">—</span>
+      <p class="dv-sub"><b data-draw="v" data-source="totals" data-field="positive" data-row="0" data-fmt="int">—</b> positive · <b data-draw="v" data-source="totals" data-field="negative" data-row="0" data-fmt="int">—</b> negative</p>
+    </div>
+    <div class="dv-tile">
+      <p class="dv-lbl">Accuracy on unseen reviews</p>
+      <span class="dv-num" data-draw="v" data-source="totals" data-field="accuracy" data-row="0" data-fmt="pct1">—</span>
+      <p class="dv-sub">AUC <b data-draw="v" data-source="totals" data-field="auc" data-row="0" data-fmt="num3">—</b></p>
+    </div>
+    <div class="dv-tile">
+      <p class="dv-lbl">Training time</p>
+      <span class="dv-num"><span data-draw="v" data-source="totals" data-field="train_seconds" data-row="0" data-fmt="num1">—</span> sec</span>
+      <p class="dv-sub">On two CPU cores, no GPU</p>
+    </div>
+    <div class="dv-tile">
+      <p class="dv-lbl">Median review length</p>
+      <span class="dv-num"><span data-draw="v" data-source="totals" data-field="median_words" data-row="0" data-fmt="int">—</span> words</span>
+      <p class="dv-sub">Average <b data-draw="v" data-source="totals" data-field="mean_words" data-row="0" data-fmt="num0">—</b> words</p>
+    </div>
+    <div class="dv-tile">
+      <p class="dv-lbl">Reviews it got wrong</p>
+      <span class="dv-num" data-draw="v" data-source="totals" data-field="errors" data-row="0" data-fmt="int">—</span>
+      <p class="dv-sub">Of the held-out half</p>
+    </div>
+  </section>
+
+  <section class="dv-sec" id="words-sec">
+    <h2>The words that decide it</h2>
+    <div class="dv-grid">
+      <div class="dv-card" id="pos-card">
+        <h3>Words that push a review positive</h3>
+        <p class="dv-note">Logistic regression weights for the strongest positive words and phrases, after lemmatization ("loved" and "loves" count as "love").</p>
+        <div class="dv-ch" style="min-height:454px" data-draw="words" data-source="words" data-dir="Positive" data-t="Weight" data-aria="Strongest positive words by model weight"></div>
+      </div>
+      <div class="dv-card" id="neg-card">
+        <h3>Words that push a review negative</h3>
+        <p class="dv-note">The negative side is led by "<b data-draw="v" data-source="words" data-field="word" data-where="direction=Negative&amp;order=0" data-fmt="text">—</b>", with a weight of <b data-draw="v" data-source="words" data-field="weight" data-where="direction=Negative&amp;order=0" data-fmt="num1">—</b>, larger than any positive word. Words like "even" and "instead" signal disappointment rather than anything bad on their own.</p>
+        <div class="dv-ch" style="min-height:454px" data-draw="words" data-source="words" data-dir="Negative" data-t="Weight" data-aria="Strongest negative words by model weight"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dv-sec" id="model-sec">
+    <h2>How well it works</h2>
+    <div class="dv-grid">
+      <div class="dv-card" id="length-card">
+        <h3>Review length barely matters</h3>
+        <p class="dv-note">Accuracy on held-out reviews by length. It stays between <b data-draw="v" data-source="length" data-field="accuracy" data-where="len_band=300–499" data-fmt="pct1">—</b> and <b data-draw="v" data-source="length" data-field="accuracy" data-where="len_band=500–799" data-fmt="pct1">—</b> whether a review is a few sentences or a full essay.</p>
+        <div class="dv-ch" style="min-height:184px" data-draw="length" data-source="length" data-t-acc="Accuracy" data-t-n="Held-out reviews" data-aria="Accuracy by review length"></div>
+      </div>
+      <div class="dv-card" id="models-card">
+        <h3>Simple baseline vs deep learning</h3>
+        <p class="dv-note">The TF-IDF model was re-run here on a random, balanced half-and-half split. The Bi-LSTM and BERT figures are as reported in the original project: they need a GPU to train and were not re-run.</p>
+        <div class="dv-scroll">
+          <table class="dv-table" data-source="models" data-row-key="model">
+            <thead><tr>
+              <th data-field="model">Model</th>
+              <th data-field="accuracy">Accuracy</th>
+              <th data-field="f1">F1</th>
+              <th data-field="training_time">Training time</th>
+              <th data-field="status">Figures</th>
+            </tr></thead>
+            <tbody data-draw="models"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="dv-foot">Data: IMDB Large Movie Review Dataset (Maas et al., Stanford AI Lab), 50,000 labeled reviews. Re-run in Python with the project's own TF-IDF settings and preprocessing (HTML clean-up, NLTK stop-word removal, spaCy lemmatization) and scikit-learn.</p>
+</div>
+<footer class="pub-foot"><span>Built by Shivam Chaudhary from public data · <a href="/">shivamchaudhary.dev</a></span><a href="https://github.com/sheevec/imdb-sentiment-nlp">View the analysis on GitHub →</a></footer>
+</div>
+<script src="/dashboards/assets/d3.min.js"></script>
+<script>window.DASH_DATA = {"totals": [{"reviews": "50000", "positive": "25000", "negative": "25000", "median_words": "173", "mean_words": "231.2", "train_reviews": "25000", "test_reviews": "25000", "vocab_features": "50000", "errors": "2659", "accuracy": "0.8936", "auc": "0.96", "train_seconds": "6.9"}], "models": [{"model": "TF-IDF + Logistic Regression", "accuracy": "0.8936", "f1": "0.895", "training_time": "6.9 sec", "status": "Re-run here"}, {"model": "Bi-LSTM (GloVe)", "accuracy": "0.917", "f1": "0.917", "training_time": "~18 min (GPU)", "status": "As reported, not re-run"}, {"model": "BERT (fine-tuned)", "accuracy": "0.948", "f1": "0.948", "training_time": "~52 min (GPU)", "status": "As reported, not re-run"}], "words": [{"word": "great", "weight": "7.488", "direction": "Positive", "order": "0"}, {"word": "excellent", "weight": "6.335", "direction": "Positive", "order": "1"}, {"word": "perfect", "weight": "4.881", "direction": "Positive", "order": "2"}, {"word": "amazing", "weight": "4.657", "direction": "Positive", "order": "3"}, {"word": "love", "weight": "4.65", "direction": "Positive", "order": "4"}, {"word": "wonderful", "weight": "4.184", "direction": "Positive", "order": "5"}, {"word": "good", "weight": "4.063", "direction": "Positive", "order": "6"}, {"word": "hilarious", "weight": "4.014", "direction": "Positive", "order": "7"}, {"word": "brilliant", "weight": "3.805", "direction": "Positive", "order": "8"}, {"word": "fun", "weight": "3.785", "direction": "Positive", "order": "9"}, {"word": "enjoy", "weight": "3.723", "direction": "Positive", "order": "10"}, {"word": "favorite", "weight": "3.708", "direction": "Positive", "order": "11"}, {"word": "one good", "weight": "3.427", "direction": "Positive", "order": "12"}, {"word": "superb", "weight": "3.34", "direction": "Positive", "order": "13"}, {"word": "definitely", "weight": "3.267", "direction": "Positive", "order": "14"}, {"word": "bad", "weight": "-11.418", "direction": "Negative", "order": "0"}, {"word": "waste", "weight": "-7.832", "direction": "Negative", "order": "1"}, {"word": "awful", "weight": "-7.007", "direction": "Negative", "order": "2"}, {"word": "poor", "weight": "-5.77", "direction": "Negative", "order": "3"}, {"word": "nothing", "weight": "-5.694", "direction": "Negative", "order": "4"}, {"word": "boring", "weight": "-5.63", "direction": "Negative", "order": "5"}, {"word": "terrible", "weight": "-5.268", "direction": "Negative", "order": "6"}, {"word": "stupid", "weight": "-5.098", "direction": "Negative", "order": "7"}, {"word": "fail", "weight": "-4.517", "direction": "Negative", "order": "8"}, {"word": "horrible", "weight": "-4.242", "direction": "Negative", "order": "9"}, {"word": "lack", "weight": "-4.241", "direction": "Negative", "order": "10"}, {"word": "suppose", "weight": "-4.204", "direction": "Negative", "order": "11"}, {"word": "even", "weight": "-4.133", "direction": "Negative", "order": "12"}, {"word": "dull", "weight": "-4.094", "direction": "Negative", "order": "13"}, {"word": "instead", "weight": "-3.941", "direction": "Negative", "order": "14"}], "length": [{"len_band": "Under 100", "reviews": "3027", "accuracy": "0.9039", "order": "0", "reviews_all": "6017"}, {"len_band": "100–199", "reviews": "11654", "accuracy": "0.8929", "order": "1", "reviews_all": "23398"}, {"len_band": "200–299", "reviews": "4720", "accuracy": "0.8892", "order": "2", "reviews_all": "9362"}, {"len_band": "300–499", "reviews": "3604", "accuracy": "0.8871", "order": "3", "reviews_all": "7297"}, {"len_band": "500–799", "reviews": "1525", "accuracy": "0.9049", "order": "4", "reviews_all": "3032"}, {"len_band": "800+", "reviews": "470", "accuracy": "0.9043", "order": "5", "reviews_all": "894"}]};</script>
+<script src="/dashboards/assets/dash-shim.js"></script>
+<script src="/dashboards/assets/charts.js"></script>
+<script>
+  const A = (el, k) => el.getAttribute('data-' + k);
+
+  dash.draw('words', (el) => {
+    if (ch.pending(el, ['words'], 'chart')) return;
+    const dir = A(el, 'dir'), v = (r) => Math.abs(ch.num(r.weight));
+    const rows = dash.data('words').data.filter((r) => r.direction === dir).sort((a, b) => ch.num(a.order) - ch.num(b.order));
+    ch.hbar(el, rows, {
+      label: (r) => r.word, value: v, fmt: (x) => ch.F.num2(x), aria: A(el, 'aria'),
+      color: () => (dir === 'Positive' ? ch.accent() : ch.critical),
+      tip: (r) => [[A(el, 't'), ch.F.num2(ch.num(r.weight))]],
+    });
+  });
+
+  dash.draw('length', (el) => {
+    if (ch.pending(el, ['length'], 'chart')) return;
+    const v = (r) => ch.num(r.accuracy);
+    const rows = dash.data('length').data.slice().sort((a, b) => ch.num(a.order) - ch.num(b.order));
+    ch.hbar(el, rows, {
+      label: (r) => r.len_band + ' words', value: v, fmt: (x) => ch.F.pct1(x), aria: A(el, 'aria'),
+      color: () => ch.accent(),
+      tip: (r) => [[A(el, 't-acc'), ch.F.pct1(v(r))], [A(el, 't-n'), ch.F.int(ch.num(r.reviews))]],
+    });
+  });
+
+  dash.draw('models', (tb) => {
+    if (ch.pending(tb, ['models'], 'table')) return;
+    const rows = dash.data('models').data;
+    const cols = [['model', null], ['accuracy', 'pct1'], ['f1', 'num3'], ['training_time', null], ['status', null]];
+    tb.replaceChildren(...rows.map((r) => {
+      const tr = document.createElement('tr');
+      cols.forEach(([c, f]) => { const td = document.createElement('td'); td.textContent = f ? ch.fmt(f, ch.num(r[c])) : r[c]; tr.append(td); });
+      return tr;
+    }));
+  });
+</script>
+</body>
+</html>

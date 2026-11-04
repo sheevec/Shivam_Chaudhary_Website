@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>COVID-19 fake news signals · Shivam Chaudhary</title>
+<meta name="description" content="How fake COVID-19 articles read differently: 240% more capital letters in headlines, fewer questions and less hedging. Writing-style features alone label 84% of 1,159 articles correctly." />
+<meta name="author" content="Shivam Chaudhary" />
+<link rel="canonical" href="https://shivamchaudhary.dev/dashboards/covid-fake-news/" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://shivamchaudhary.dev/dashboards/covid-fake-news/" />
+<meta property="og:title" content="COVID-19 fake news signals · Shivam Chaudhary" />
+<meta property="og:description" content="How fake COVID-19 articles read differently: 240% more capital letters in headlines, fewer questions and less hedging. Writing-style features alone label 84% of 1,159 articles correctly." />
+<meta property="og:image" content="https://shivamchaudhary.dev/dashboards/assets/og-covid-fake-news.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:site_name" content="Shivam Chaudhary" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="COVID-19 fake news signals · Shivam Chaudhary" />
+<meta name="twitter:description" content="How fake COVID-19 articles read differently: 240% more capital letters in headlines, fewer questions and less hedging. Writing-style features alone label 84% of 1,159 articles correctly." />
+<meta name="twitter:image" content="https://shivamchaudhary.dev/dashboards/assets/og-covid-fake-news.jpg" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/dashboards/assets/charts.css" />
+<link rel="stylesheet" href="/dashboards/assets/theme.css" />
+</head>
+<body>
+<div class="pub-wrap">
+<nav class="pub-bar"><a class="pub-brand" href="/">Shivam Chaudhary</a><span class="pub-links"><a href="/dashboards/">All dashboards</a><a href="https://github.com/sheevec/covid-fake-news-detector">Analysis &amp; code on GitHub</a></span></nav>
+<div class="dv-page">
+  <header class="dv-head" id="top">
+    <p class="pub-kicker">NLP · Misinformation detection · Team project</p>
+    <h1>COVID-19 fake news signals</h1>
+    <p class="dv-take">Fake COVID-19 articles use <b data-draw="v" data-source="style" data-field="fake_vs_true" data-where="metric=Uppercase letters in title" data-fmt="pct0">—</b> more capital letters in their headlines, and a model using only writing-style features labels <b data-draw="v" data-source="models" data-field="accuracy" data-where="model=Logistic regression (project features)" data-fmt="pct1">—</b> of articles correctly.</p>
+  </header>
+
+  <section class="dv-tiles" aria-label="Headline figures">
+    <div class="dv-tile">
+      <p class="dv-lbl">Labeled articles</p>
+      <span class="dv-num" data-draw="v" data-source="totals" data-field="articles" data-row="0" data-fmt="int">—</span>
+      <p class="dv-sub"><b data-draw="v" data-source="totals" data-field="fake" data-row="0" data-fmt="int">—</b> fake · <b data-draw="v" data-source="totals" data-field="true" data-row="0" data-fmt="int">—</b> true</p>
+    </div>
+    <div class="dv-tile">
+      <p class="dv-lbl">Sources</p>
+      <span class="dv-num" data-draw="v" data-source="totals" data-field="sources" data-row="0" data-fmt="int">—</span>
+      <p class="dv-sub"><b data-draw="v" data-source="totals" data-field="single_label_share" data-row="0" data-fmt="pct1">—</b> publish only fake or only true</p>
+    </div>
+    <div class="dv-tile">
+      <p class="dv-lbl">Writing-style features</p>
+      <span class="dv-num" data-draw="v" data-source="totals" data-field="features" data-row="0" data-fmt="int">—</span>
+      <p class="dv-sub">Capitals, readability, word choice, grammar</p>
+    </div>
+    <div class="dv-tile">
+      <p class="dv-lbl">Accuracy from style alone</p>
+      <span class="dv-num" data-draw="v" data-source="models" data-field="accuracy" data-where="model=Logistic regression (project features)" data-fmt="pct1">—</span>
+      <p class="dv-sub">LinearSVC: <b data-draw="v" data-source="models" data-field="accuracy" data-where="model=LinearSVC (project features)" data-fmt="pct1">—</b></p>
+    </div>
+    <div class="dv-tile">
+      <p class="dv-lbl">Accuracy from the words used</p>
+      <span class="dv-num" data-draw="v" data-source="models" data-field="accuracy" data-where="model=TF-IDF words + LinearSVC" data-fmt="pct1">—</span>
+      <p class="dv-sub">TF-IDF on the article text</p>
+    </div>
+  </section>
+
+  <section class="dv-sec" id="style-sec">
+    <h2>How fake articles read differently</h2>
+    <div class="dv-grid">
+      <div class="dv-card dv-wide" id="style-card">
+        <h3>Fake articles shout; true ones ask and hedge</h3>
+        <p class="dv-note">Average per article, fake compared with true. Bars to the right are higher in fake articles, bars to the left higher in true ones. Fake headlines carry <b data-draw="v" data-source="style" data-field="fake_avg" data-where="metric=Uppercase letters in title" data-fmt="num1">—</b> capital letters on average against <b data-draw="v" data-source="style" data-field="true_avg" data-where="metric=Uppercase letters in title" data-fmt="num1">—</b>, while true articles use question words in titles far more often (FAQ-style health pages) and more tentative words such as "may" and "could".</p>
+        <div class="dv-ch" style="min-height:334px" data-draw="style" data-source="style" data-t-diff="Fake vs true" data-t-fake="Fake average" data-t-true="True average"
+          data-aria="Difference between fake and true articles for each writing-style measure"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dv-sec" id="sources-sec">
+    <h2>Where the articles come from</h2>
+    <div class="dv-grid">
+      <div class="dv-card" id="sources-card">
+        <h3>Labels follow the publisher</h3>
+        <p class="dv-note">The biggest sources by article count. Red bars are sources where every article is labeled fake, cyan bars sources where every article is labeled true. Across the data, <b data-draw="v" data-source="totals" data-field="single_label_sources" data-row="0" data-fmt="int">—</b> of <b data-draw="v" data-source="totals" data-field="sources" data-row="0" data-fmt="int">—</b> sources are one or the other.</p>
+        <div class="dv-ch" style="min-height:364px" data-draw="sources" data-source="sources" data-t-articles="Articles" data-t-label="Label"
+          data-aria="Articles per source for the largest sources, colored by label"></div>
+      </div>
+      <div class="dv-card" id="caveat-card" style="align-self:start">
+        <h3>What that means for the accuracy figures</h3>
+        <p class="dv-note">Because almost every source is entirely fake or entirely true, a model can score well by recognising each publisher's house style rather than misinformation itself. The accuracy figures here are best read as how well style separates these publishers. A fair test would hold out whole sources, so the model meets publishers it has never seen.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="dv-sec" id="model-sec">
+    <h2>Detecting fake news</h2>
+    <div class="dv-grid">
+      <div class="dv-card dv-wide" id="models-card">
+        <h3>Model comparison</h3>
+        <p class="dv-note">Five-fold stratified cross-validation on all <b data-draw="v" data-source="totals" data-field="articles" data-row="0" data-fmt="int">—</b> labeled articles, with fake as the positive class. The two style models use the project's linguistic features only; the word-based model reads the article text directly, for comparison. Best value in each column is highlighted.</p>
+        <div class="dv-scroll">
+          <table class="dv-table" data-source="models" data-row-key="model">
+            <thead><tr>
+              <th data-field="model">Model</th>
+              <th data-field="accuracy">Accuracy</th>
+              <th data-field="precision">Precision</th>
+              <th data-field="recall">Recall</th>
+              <th data-field="f1">F1</th>
+            </tr></thead>
+            <tbody data-draw="models"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="dv-foot">Data: corona_fake.csv from the project repository, COVID-19 articles labeled fake or true (rows without a label are left out). Team project (Husky 4: Sagar, Shivam and Saju) for EAI6010 Applications of AI at Northeastern University. Re-run in Python with the project's own feature code (NLTK, textstat, lexicalrichness) and scikit-learn.</p>
+</div>
+<footer class="pub-foot"><span>Built by Shivam Chaudhary from public data · <a href="/">shivamchaudhary.dev</a></span><a href="https://github.com/sheevec/covid-fake-news-detector">View the analysis on GitHub →</a></footer>
+</div>
+<script src="/dashboards/assets/d3.min.js"></script>
+<script>window.DASH_DATA = {"totals": [{"articles": "1159", "fake": "575", "true": "584", "fake_share": "0.4961", "sources": "269", "single_label_sources": "266", "single_label_share": "0.9888", "features": "63", "unlabeled_dropped": "5"}], "style": [{"metric": "Uppercase letters in title", "true_avg": "4.5616", "fake_avg": "15.5148", "fake_vs_true": "2.4011", "unit": "num1", "order": "0"}, {"metric": "Uppercase share of text", "true_avg": "0.0269", "fake_avg": "0.0409", "fake_vs_true": "0.5184", "unit": "pct1", "order": "1"}, {"metric": "Words per article", "true_avg": "512.2568", "fake_avg": "685.7426", "fake_vs_true": "0.3387", "unit": "num1", "order": "2"}, {"metric": "Difficult words per 100", "true_avg": "24.2992", "fake_avg": "25.0026", "fake_vs_true": "0.0289", "unit": "num1", "order": "3"}, {"metric": "Vocabulary richness (TTR)", "true_avg": "0.5963", "fake_avg": "0.6015", "fake_vs_true": "0.0088", "unit": "num3", "order": "4"}, {"metric": "Reading ease (Flesch)", "true_avg": "47.259", "fake_avg": "45.398", "fake_vs_true": "-0.0394", "unit": "num1", "order": "5"}, {"metric": "Negations per 100", "true_avg": "2.1278", "fake_avg": "1.9392", "fake_vs_true": "-0.0886", "unit": "num1", "order": "6"}, {"metric": "Emotion words per 100", "true_avg": "0.3745", "fake_avg": "0.2723", "fake_vs_true": "-0.2731", "unit": "num1", "order": "7"}, {"metric": "Tentative words per 100", "true_avg": "1.475", "fake_avg": "1.0332", "fake_vs_true": "-0.2995", "unit": "num1", "order": "8"}, {"metric": "Power words per 100", "true_avg": "4.494", "fake_avg": "3.0568", "fake_vs_true": "-0.3198", "unit": "num1", "order": "9"}, {"metric": "Question words in title", "true_avg": "0.5771", "fake_avg": "0.0922", "fake_vs_true": "-0.8403", "unit": "num1", "order": "10"}], "sources": [{"source": "health.harvard.edu", "articles": "102", "fake_articles": "0", "fake_share": "0.0", "label": "All true", "order": "0"}, {"source": "nytimes.com", "articles": "62", "fake_articles": "0", "fake_share": "0.0", "label": "All true", "order": "1"}, {"source": "Facebook", "articles": "61", "fake_articles": "61", "fake_share": "1.0", "label": "All fake", "order": "2"}, {"source": "globalhealthnow.org", "articles": "56", "fake_articles": "0", "fake_share": "0.0", "label": "All true", "order": "3"}, {"source": "who.int", "articles": "49", "fake_articles": "0", "fake_share": "0.0", "label": "All true", "order": "4"}, {"source": "cdc.gov", "articles": "38", "fake_articles": "0", "fake_share": "0.0", "label": "All true", "order": "5"}, {"source": "cnn.com", "articles": "29", "fake_articles": "0", "fake_share": "0.0", "label": "All true", "order": "6"}, {"source": "naturalnews.com", "articles": "25", "fake_articles": "25", "fake_share": "1.0", "label": "All fake", "order": "7"}, {"source": "orthomolecular.org", "articles": "21", "fake_articles": "21", "fake_share": "1.0", "label": "All fake", "order": "8"}, {"source": "washingtonpost.com", "articles": "21", "fake_articles": "0", "fake_share": "0.0", "label": "All true", "order": "9"}, {"source": "web.archive.org", "articles": "21", "fake_articles": "21", "fake_share": "1.0", "label": "All fake", "order": "10"}, {"source": "ecdc.europa.eu", "articles": "17", "fake_articles": "0", "fake_share": "0.0", "label": "All true", "order": "11"}], "models": [{"model": "LinearSVC (project features)", "accuracy": "0.8378", "precision": "0.8319", "recall": "0.8435", "f1": "0.8377", "note": "Project's model"}, {"model": "Logistic regression (project features)", "accuracy": "0.8404", "precision": "0.8351", "recall": "0.8452", "f1": "0.8401", "note": "Stand-in for SageMaker Linear Learner"}, {"model": "TF-IDF words + LinearSVC", "accuracy": "0.9336", "precision": "0.9323", "recall": "0.9339", "f1": "0.9331", "note": "Word-based comparison"}]};</script>
+<script src="/dashboards/assets/dash-shim.js"></script>
+<script src="/dashboards/assets/charts.js"></script>
+<script>
+  const A = (el, k) => el.getAttribute('data-' + k);
+
+  dash.draw('style', (el) => {
+    if (ch.pending(el, ['style'], 'chart')) return;
+    const v = (r) => ch.num(r.fake_vs_true);
+    const rows = dash.data('style').data.slice().sort((a, b) => ch.num(a.order) - ch.num(b.order));
+    ch.hbar(el, rows, {
+      label: (r) => r.metric, value: v, fmt: (x) => ch.F.spct(x), aria: A(el, 'aria'),
+      color: (r) => (v(r) > 0 ? ch.critical : ch.accent()),
+      tip: (r) => [
+        [A(el, 't-diff'), ch.F.spct(v(r))],
+        [A(el, 't-fake'), ch.fmt(r.unit, ch.num(r.fake_avg)), ch.critical],
+        [A(el, 't-true'), ch.fmt(r.unit, ch.num(r.true_avg)), ch.accent()],
+      ],
+    });
+  });
+
+  dash.draw('sources', (el) => {
+    if (ch.pending(el, ['sources'], 'chart')) return;
+    const v = (r) => ch.num(r.articles);
+    const rows = dash.data('sources').data.slice().sort((a, b) => ch.num(a.order) - ch.num(b.order));
+    ch.hbar(el, rows, {
+      label: (r) => r.source, value: v, fmt: (x) => ch.F.int(x), aria: A(el, 'aria'),
+      color: (r) => (ch.num(r.fake_share) === 1 ? ch.critical : ch.accent()),
+      tip: (r) => [[A(el, 't-articles'), ch.F.int(v(r))], [A(el, 't-label'), r.label]],
+    });
+  });
+
+  dash.draw('models', (tb) => {
+    if (ch.pending(tb, ['models'], 'table')) return;
+    const rows = dash.data('models').data;
+    const cols = [['model', null], ['accuracy', 'pct1'], ['precision', 'pct1'], ['recall', 'pct1'], ['f1', 'num3']];
+    const best = {};
+    cols.slice(1).forEach(([c]) => { best[c] = d3.max(rows, (r) => ch.num(r[c])); });
+    tb.replaceChildren(...rows.map((r) => {
+      const tr = document.createElement('tr');
+      cols.forEach(([c, f]) => {
+        const td = document.createElement('td');
+        td.textContent = f ? ch.fmt(f, ch.num(r[c])) : r[c];
+        if (f && ch.num(r[c]) === best[c]) td.className = 'dv-best';
+        tr.append(td);
+      });
+      return tr;
+    }));
+  });
+</script>
+</body>
+</html>
