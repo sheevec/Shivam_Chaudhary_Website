@@ -1477,6 +1477,12 @@ textarea {
 }
 
 .case-github-link:hover,
+.lab-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.1rem;
+}
+
 .lab-github-link:hover {
   color: #ffffff;
   border-color: rgba(34, 211, 238, 0.4);

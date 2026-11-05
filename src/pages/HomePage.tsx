@@ -456,10 +456,19 @@ export default function HomePage() {
                   ))}
                 </div>
 
-                {lab.github && (
-                  <a href={lab.github} target="_blank" rel="noreferrer" className="lab-github-link">
-                    View on GitHub ↗
-                  </a>
+                {(lab.github || lab.dashboard) && (
+                  <div className="lab-links">
+                    {lab.dashboard && (
+                      <a href={lab.dashboard} className="lab-github-link">
+                        View dashboard →
+                      </a>
+                    )}
+                    {lab.github && (
+                      <a href={lab.github} target="_blank" rel="noreferrer" className="lab-github-link">
+                        View on GitHub ↗
+                      </a>
+                    )}
+                  </div>
                 )}
               </article>
             ))}

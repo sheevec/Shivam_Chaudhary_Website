@@ -61,6 +61,7 @@ export interface LabProject {
   desc: string
   tags: string[]
   github?: string
+  dashboard?: string
 }
 
 export interface WritingItem {
@@ -303,9 +304,10 @@ export const labs: LabProject[] = [
     title: 'COVID-19 Fake News Detector',
     context: 'Applied NLP · Team Project',
     category: 'NLP',
-    desc: 'NLP classifier detecting COVID-19 misinformation with 30+ linguistic features (readability, POS distributions, lexical richness, negation patterns) deployed via AWS SageMaker. ~91% accuracy without transformers.',
+    desc: 'NLP classifier detecting COVID-19 misinformation from 60+ linguistic features (readability, POS distributions, lexical richness, negation patterns) with an AWS SageMaker pipeline. Writing style alone labels 84% of 1,159 articles correctly; fake headlines carry 240% more capital letters.',
     tags: ['Python', 'NLP', 'SageMaker', 'scikit-learn', 'NLTK'],
     github: 'https://github.com/sheevec/covid-fake-news-detector',
+    dashboard: '/dashboards/covid-fake-news/',
   },
   {
     title: 'IMDb Sentiment: Classical ML vs Transformers',
@@ -314,6 +316,7 @@ export const labs: LabProject[] = [
     desc: 'End-to-end NLP benchmark comparing TF-IDF + LogReg (89.3%), BiLSTM (91.7%), and fine-tuned BERT (94.8%) on 50k movie reviews. Includes error analysis and accuracy-by-length breakdown.',
     tags: ['Python', 'BERT', 'Transformers', 'PyTorch'],
     github: 'https://github.com/sheevec/imdb-sentiment-nlp',
+    dashboard: '/dashboards/imdb-sentiment/',
   },
   {
     title: 'Macroeconomic Forecasting with VAR',
@@ -327,9 +330,10 @@ export const labs: LabProject[] = [
     title: 'Bank Marketing Campaign Prediction',
     context: 'Northeastern · Predictive Analytics',
     category: 'ML',
-    desc: 'Multi-model classification on 45k bank telemarketing records predicting term deposit subscriptions. Logistic Regression vs Naive Bayes vs Decision Trees with an expected-value matrix to quantify financial impact per model.',
-    tags: ['R', 'Classification', 'caret', 'Predictive Analytics'],
+    desc: 'Classification on 41,188 bank telemarketing calls predicting term deposit subscriptions, with an expected-value matrix to set the call cutoff. Ranking customers by model score reaches 62.8% of subscribers from 20% of the call list.',
+    tags: ['R', 'Python', 'Classification', 'Predictive Analytics'],
     github: 'https://github.com/sheevec/banking-campaign-prediction',
+    dashboard: '/dashboards/bank-campaign/',
   },
   {
     title: 'Fashion-MNIST CNN Benchmarking',
@@ -343,9 +347,10 @@ export const labs: LabProject[] = [
     title: 'Black Friday Purchase Prediction',
     context: 'Applied ML',
     category: 'ML',
-    desc: 'Feature-engineered 550k retail transactions to predict purchase amounts. User-level aggregations and product interaction features. Best RMSE 2847 (LightGBM). Includes expected value and buyer intent segmentation.',
+    desc: 'Feature-engineered 550k retail transactions to predict purchase amounts, comparing four models on unseen customers (R² 0.71, RMSE 2,713). Sales analysis: the top 10% of customers drive 36% of purchase value.',
     tags: ['Python', 'XGBoost', 'LightGBM', 'Feature Engineering'],
     github: 'https://github.com/sheevec/black-friday-prediction',
+    dashboard: '/dashboards/black-friday/',
   },
   {
     title: 'CrowdDoing — Non-Profit Analytics',
