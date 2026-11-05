@@ -1493,6 +1493,10 @@ textarea {
 
 /* ─ GitHub project links ─────────────────────────────────── */
 
+.case-github-link + .case-github-link {
+  margin-left: 1.1rem;
+}
+
 .case-github-link,
 .lab-github-link {
   display: inline-flex;

@@ -78,6 +78,7 @@ export function NavBar() {
         {navLink('work', 'Work', 'work')}
         {navLink('experience', 'Experience', 'experience')}
         {navLink('labs', 'Labs', 'labs')}
+        <a href="/projects/">Case Studies</a>
         <a href="/dashboards/">Dashboards</a>
         {navLink('education', 'Education', 'education')}
         <Link to="/resume" className="nav-resume">
@@ -124,6 +125,9 @@ export function NavBar() {
             </a>
             <a href={homeSectionHash('labs')} onClick={() => setMenuOpen(false)}>
               Labs
+            </a>
+            <a href="/projects/" onClick={() => setMenuOpen(false)}>
+              Case Studies
             </a>
             <a href="/dashboards/" onClick={() => setMenuOpen(false)}>
               Dashboards

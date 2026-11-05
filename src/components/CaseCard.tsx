@@ -64,6 +64,16 @@ export function CaseCard({ study }: { study: CaseStudy }) {
               ))}
             </div>
 
+            {study.caseStudy && (
+              <a
+                href={study.caseStudy}
+                className="case-github-link"
+                onClick={(e) => e.stopPropagation()}
+              >
+                Read the full case study →
+              </a>
+            )}
+
             {study.github && (
               <a
                 href={study.github}

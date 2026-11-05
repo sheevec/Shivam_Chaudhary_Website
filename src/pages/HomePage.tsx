@@ -319,6 +319,10 @@ export default function HomePage() {
               A mix of enterprise data platforms, fraud decisioning, credit-risk infrastructure and founder-led product
               work.
             </p>
+            <a href="/projects/" className="labs-dash-cta">
+              <span className="labs-dash-cta-kicker">Deep dives</span>
+              Read the full data engineering case studies →
+            </a>
           </div>
 
           <Suspense fallback={null}>

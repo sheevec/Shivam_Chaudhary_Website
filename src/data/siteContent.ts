@@ -22,6 +22,7 @@ export interface CaseStudy {
   accent: CaseAccent
   diagram: string[]
   github?: string
+  caseStudy?: string
 }
 
 export interface ArchitectureSystem {
@@ -106,6 +107,7 @@ export const caseStudies: CaseStudy[] = [
     accent: 'cyan',
     diagram: ['Bureau / FICO', 'Match + Key', 'Feature Store', 'Risk Models'],
     github: 'https://github.com/sheevec/credit-risk-pipeline',
+    caseStudy: '/projects/credit-risk-pipeline/',
   },
   {
     id: 'fraud',
@@ -122,6 +124,7 @@ export const caseStudies: CaseStudy[] = [
     accent: 'violet',
     diagram: ['Tx Stream', 'Anomaly', 'Score', 'Decision'],
     github: 'https://github.com/sheevec/fraud-detection-ml',
+    caseStudy: '/projects/fraud-detection/',
   },
   {
     id: 'enterprise-data',
@@ -138,6 +141,7 @@ export const caseStudies: CaseStudy[] = [
     accent: 'blue',
     diagram: ['CSV / Parquet', 'Validate', 'Lakehouse', 'Consumers'],
     github: 'https://github.com/sheevec/enterprise-data-platform',
+    caseStudy: '/projects/enterprise-data-platform/',
   },
   {
     id: 'plurit',
