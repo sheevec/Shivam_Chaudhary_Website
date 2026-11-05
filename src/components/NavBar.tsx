@@ -61,8 +61,8 @@ export function NavBar() {
   return (
     <motion.nav
       className={`nav premium-nav ${scrolled ? 'nav-scrolled' : ''} ${menuOpen ? 'nav-menu-open' : ''}`}
-      initial={{ y: -60, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
+      initial={{ x: '-50%', y: -60, opacity: 0 }}
+      animate={{ x: '-50%', y: 0, opacity: 1 }}
       transition={{ duration: 0.7, ease }}
     >
       <Link to="/" className="nav-brand premium-brand">
@@ -78,6 +78,7 @@ export function NavBar() {
         {navLink('work', 'Work', 'work')}
         {navLink('experience', 'Experience', 'experience')}
         {navLink('labs', 'Labs', 'labs')}
+        <a href="/dashboards/">Dashboards</a>
         {navLink('education', 'Education', 'education')}
         <Link to="/resume" className="nav-resume">
           Resume
@@ -123,6 +124,9 @@ export function NavBar() {
             </a>
             <a href={homeSectionHash('labs')} onClick={() => setMenuOpen(false)}>
               Labs
+            </a>
+            <a href="/dashboards/" onClick={() => setMenuOpen(false)}>
+              Dashboards
             </a>
             <a href={homeSectionHash('education')} onClick={() => setMenuOpen(false)}>
               Education

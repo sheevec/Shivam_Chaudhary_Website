@@ -427,14 +427,14 @@
 /* ─ Showcase (heatmap + code) ─ */
 .showcase-grid {
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
   gap: 1.25rem;
   align-items: start;
 }
 
 @media (max-width: 1024px) {
   .showcase-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 

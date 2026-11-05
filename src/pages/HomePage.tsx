@@ -424,6 +424,10 @@ export default function HomePage() {
         <div className="section-head">
           <span className="section-label label-blue">Labs & Experiments</span>
           <h2>Applied ML and research work</h2>
+          <a href="/dashboards/" className="labs-dash-cta">
+            <span className="labs-dash-cta-kicker">New</span>
+            Explore 4 interactive analytics dashboards built from these projects →
+          </a>
         </div>
 
         <div className="lab-filters" role="group" aria-label="Filter projects">
